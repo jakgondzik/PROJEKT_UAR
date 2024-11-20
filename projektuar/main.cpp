@@ -7,23 +7,64 @@
 TODO:
 ARX:
 
--Dopisaæ zale¿noœæ delayu od wprowadzanego ui
+
 
 PID:
 
--ca³oœæ
+
 
 
 */
 using namespace std;
-
+class Symulacja
+{
+protected:
+	//Nazwy pisze na szybko, do sprawdzenia
+	ARX * m_ARX = nullptr;
+	PID * m_PID = nullptr;
+public:
+	//Musze sprawdzic jak sie wyklucza konstruktor domyslny
+	void wykonajKrok()
+	{
+		//Sprawdzenie czy arx i pid sa ustawione
+		// do dopisania w czwartek
+	}
+	Symulacja() = delete[]; // wykluczylem konstruktor domyslny
+	Symulacja(ARX* arx, PID * pid)
+	{
+		setARX(arx);
+		setPID(pid);
+	}
+	void setARX(ARX * arx)
+	{
+		if(arx != nullptr)
+		{
+			m_arx = arx;
+		}
+		else
+		{
+			throw invalid_argument("Nie podales regulatora!!!");
+		}
+	}
+	void setPID(PID * pid)
+		{
+			if(pid != nullptr)
+			{
+				m_pid = pid;
+			}
+			else
+			{
+				throw invalid_argument("Nie podales ukladu czegos tam dopiszemy!!!");
+			}
+		}
+};
 class ARX
 {
 protected:
 	deque<double> m_yi = { 0 };
 	array<double, 2> m_vec_a;
 	array<double, 2> m_vec_b;
-	//tymczasowo tak iteracje bo trzeba przerobic pod QTIMER, ewentualnie mo¿emy statycznie to zrobiæ
+	//tymczasowo tak iteracje bo trzeba przerobic pod QTIMER, ewentualnie moÅ¼emy statycznie to zrobiÄ‡
 	int m_iteracje = 0;
 	int m_delay = 0;
 	deque<double> m_ui;
