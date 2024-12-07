@@ -1,0 +1,133 @@
+﻿  klasy.cpp
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(14,13): error C2065: "ARX": niezadeklarowany identyfikator
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(14,2): error C2923: „std::unique_ptr”: „ARX” nie jest prawidłowym argumentem typu szablon dla parametru „_Ty”
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(14,13):
+  zobacz deklarację „ARX”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(14,2): error C2976: „std::unique_ptr”: za mało argumentów szablon
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3203,1):
+  zobacz deklarację „std::unique_ptr”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(15,13): error C2065: "PID": niezadeklarowany identyfikator
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(15,2): error C2923: „std::unique_ptr”: „PID” nie jest prawidłowym argumentem typu szablon dla parametru „_Ty”
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(15,13):
+  zobacz deklarację „PID”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(15,2): error C2976: „std::unique_ptr”: za mało argumentów szablon
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3203,1):
+  zobacz deklarację „std::unique_ptr”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,23): error C2065: "ARX": niezadeklarowany identyfikator
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,12): error C2923: „std::unique_ptr”: „ARX” nie jest prawidłowym argumentem typu szablon dla parametru „_Ty”
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,23):
+  zobacz deklarację „ARX”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,12): error C2976: „std::unique_ptr”: za mało argumentów szablon
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3203,1):
+  zobacz deklarację „std::unique_ptr”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,44): error C2065: "PID": niezadeklarowany identyfikator
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,33): error C2923: „std::unique_ptr”: „PID” nie jest prawidłowym argumentem typu szablon dla parametru „_Ty”
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,44):
+  zobacz deklarację „PID”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,33): error C2976: „std::unique_ptr”: za mało argumentów szablon
+  (kompilowanie pliku źródłowego „klasy.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3203,1):
+  zobacz deklarację „std::unique_ptr”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.cpp(11,1): error C2011: "Symulacja'': "class" wpisz ponownie definicję
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(10,7):
+  zobacz deklarację „Symulacja”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.cpp(68,1): error C2011: "ARX'': "class" wpisz ponownie definicję
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(27,8):
+  zobacz deklarację „ARX”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.cpp(182,1): error C2011: "PID'': "class" wpisz ponownie definicję
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(56,8):
+  zobacz deklarację „PID”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.cpp(238,21): error C2011: "WartoscZadana'': "class" wpisz ponownie definicję
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(76,8):
+  zobacz deklarację „WartoscZadana”
+  
+  main.cpp
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(14,13): error C2065: "ARX": niezadeklarowany identyfikator
+  (kompilowanie pliku źródłowego „main.cpp”)
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(14,2): error C2923: „std::unique_ptr”: „ARX” nie jest prawidłowym argumentem typu szablon dla parametru „_Ty”
+  (kompilowanie pliku źródłowego „main.cpp”)
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(14,13):
+  zobacz deklarację „ARX”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(14,2): error C2976: „std::unique_ptr”: za mało argumentów szablon
+  (kompilowanie pliku źródłowego „main.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3203,1):
+  zobacz deklarację „std::unique_ptr”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(15,13): error C2065: "PID": niezadeklarowany identyfikator
+  (kompilowanie pliku źródłowego „main.cpp”)
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(15,2): error C2923: „std::unique_ptr”: „PID” nie jest prawidłowym argumentem typu szablon dla parametru „_Ty”
+  (kompilowanie pliku źródłowego „main.cpp”)
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(15,13):
+  zobacz deklarację „PID”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(15,2): error C2976: „std::unique_ptr”: za mało argumentów szablon
+  (kompilowanie pliku źródłowego „main.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3203,1):
+  zobacz deklarację „std::unique_ptr”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,23): error C2065: "ARX": niezadeklarowany identyfikator
+  (kompilowanie pliku źródłowego „main.cpp”)
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,12): error C2923: „std::unique_ptr”: „ARX” nie jest prawidłowym argumentem typu szablon dla parametru „_Ty”
+  (kompilowanie pliku źródłowego „main.cpp”)
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,23):
+  zobacz deklarację „ARX”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,12): error C2976: „std::unique_ptr”: za mało argumentów szablon
+  (kompilowanie pliku źródłowego „main.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3203,1):
+  zobacz deklarację „std::unique_ptr”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,44): error C2065: "PID": niezadeklarowany identyfikator
+  (kompilowanie pliku źródłowego „main.cpp”)
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,33): error C2923: „std::unique_ptr”: „PID” nie jest prawidłowym argumentem typu szablon dla parametru „_Ty”
+  (kompilowanie pliku źródłowego „main.cpp”)
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,44):
+  zobacz deklarację „PID”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,33): error C2976: „std::unique_ptr”: za mało argumentów szablon
+  (kompilowanie pliku źródłowego „main.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3203,1):
+  zobacz deklarację „std::unique_ptr”
+  
+C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\main.cpp(36,21): error C2665: „Symulacja::Symulacja”: żadna przeciążona funkcja nie może przekonwertować wszystkich typów argumentów
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\klasy.h(22,2):
+  może to być „Symulacja::Symulacja(std::unique_ptr,std::unique_ptr)”
+  	C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\main.cpp(36,21):
+  	„Symulacja::Symulacja(std::unique_ptr,std::unique_ptr)”: nie można dokonać konwersji argumentu 1 z „std::unique_ptr<ARX,std::default_delete<ARX>>” do „std::unique_ptr”
+  		C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\main.cpp(36,26):
+  		Nie jest dostępny żaden operator konwersji zdefiniowany przez użytkownika, który mógłby wykonać tę konwersję lub operator nie może zostać wywołany
+  C:\Users\PC\Desktop\PROJEKT UAR\PROJEKT_UAR\projektuar\main.cpp(36,21):
+  podczas próby dopasowania listy argumentów "(std::unique_ptr<ARX,std::default_delete<ARX>>, std::unique_ptr<PID,std::default_delete<PID>>)"
+  
+  Generowanie kodu...
