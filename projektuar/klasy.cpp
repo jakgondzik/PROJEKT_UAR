@@ -1,92 +1,36 @@
 #include "klasy.h"
-#include <iostream>
-#include <deque>
-#include <array>
-#include <random>
+#include <algorithm>
 #include <cmath>
+#include <stdexcept>
 
-using namespace std;
-
-class Symulacja
-{
-protected:
-	//Nazwy pisze na szybko, do sprawdzenia
-	unique_ptr<ARX> m_ARX;
-	unique_ptr<PID> m_PID;
-	double m_zadane;
-	double m_zmierzone;
-public:
-	//Musze sprawdzic jak sie wyklucza konstruktor domyslny
-	void wykonajKrok()
-	{
-		//Sprawdzenie czy arx i pid sa ustawione
-		// do dopisania w czwartek
-	}
-	Symulacja() = delete; // wykluczylem konstruktor domyslny
-	Symulacja(unique_ptr<ARX> arx, unique_ptr<PID> pid)
-		: m_ARX(move(arx)), m_PID(move(pid)), m_zmierzone(0.0) {}
-	/*void setARX(ARX* arx)
-	{
-		if(arx != nullptr)
-		{
-			m_ARX = arx;
-		}
-		else
-		{
-			throw invalid_argument("Nie podales modelu!!!");
-		}
-	}
-	void setPID(PID * pid)
-		{
-			if(pid != nullptr)
-			{
-				m_PID = pid;
-			}
-			else
-			{
-				throw invalid_argument("Nie podales regulatora!!!");
-			}
-		}*/
-	void setZadane(double zadane)
+	void Symulacja::setZadane(double zadane)
 	{
 		m_zadane = zadane;
 	}
-	double krok()
+	double Symulacja::krok()
 	{
+		if (!m_ARX || !m_PID)
+		{
+			throw std::logic_error("Nie ustawiono ARX lub PID");
+		}
 		double sygnal = m_PID->oblicz(m_zadane, m_zmierzone);
 		m_zmierzone = m_ARX->krok(sygnal);
 		return m_zmierzone;
 	}
-	void reset()
+	void Symulacja::reset()
 	{
 		m_PID->reset();
 		m_ARX->reset();
 		m_zmierzone = 0.0;
 	}
-};
-class ARX
-{
-protected:
-	deque<double> m_yi = { 0 };
-	vector<double> m_vec_a;
-	vector<double> m_vec_b;
-	//tymczasowo tak iteracje bo trzeba przerobic pod QTIMER, ewentualnie mo¿emy statycznie to zrobiæ
-	int m_iteracje = 0;
-	int m_delay = 0;
-	double m_zaklocenia;
-	deque<double> m_ui;
-	default_random_engine generator;
-	normal_distribution<double> gzaklocen;
 
-	//zaklocenia beda losowane
-public:
-	double wykonajKrok()
+	/*double ARX::wykonajKrok()
 	{
 		double y = m_vec_b[0] * m_ui.back() + m_vec_b[1] * m_ui.back() - m_vec_a[0] * m_yi.front() + m_vec_a[1] * m_yi.front();
 		m_yi.push_front(y);
 		czyJuz();
-	}
-	double krok(double u) //inna wersja kroku
+	}*/
+	double ARX::krok(double u) //inna wersja kroku
 	{
 		m_ui.push_back(u);
 		if (m_ui.size() > m_vec_b.size() + m_delay)
@@ -117,12 +61,12 @@ public:
 		}
 		return wyjscie;
 	}
-	void setZaklocenia(double zaklocenia) //nowa wartosc dla uchybu zaklocen
+	void ARX::setZaklocenia(double zaklocenia) //nowa wartosc dla uchybu zaklocen
 	{
 		m_zaklocenia = zaklocenia;
-		gzaklocen = normal_distribution<double>(0.0, zaklocenia);
+		gzaklocen = std::normal_distribution<double>(0.0, zaklocenia);
 	}
-	void czyJuz()
+	/*void ARX::czyJuz()
 	{
 		m_iteracje++;
 		m_delay--;
@@ -130,69 +74,59 @@ public:
 		{
 			m_ui.pop_back();
 		}
-	}
-	ARX(const vector<double>& vec_a, const vector<double>& vec_b, int delay, int iteracje, double zaklocenia = 0.0)
-		:m_ui(deque<double>(vec_b.size() + delay, 0.0)), m_yi(deque<double>(vec_a.size(), 0.0)), gzaklocen(0.0, zaklocenia) {
+	}*/
+	ARX::ARX(const std::vector<double>& vec_a, const std::vector<double>& vec_b, int delay, int iteracje, double zaklocenia)
+		:m_ui(std::deque<double>(vec_b.size() + delay, 0.0)), m_yi(std::deque<double>(vec_a.size(), 0.0)), gzaklocen(0.0, zaklocenia) {
 		setVektory(vec_a, vec_b);
 		setIteracje(iteracje);
 		setDelay(delay);
 	}
-	void setZadane(deque<double> u)
+	/*void ARX::setZadane(std::deque<double> u)
 	{
 		double najmniejsza = 1000000;
 		if (*(std::find(u.begin(), u.end(), najmniejsza)) < 0)
 		{
-			throw invalid_argument("sygnal zadany nie moze byc ujemny...");
+			throw std::invalid_argument("sygnal zadany nie moze byc ujemny...");
 		}
 		else
 		{
 			m_ui = u;
 		}
-	}
-	void setSkok(double skok)
+	}*/
+	/*void ARX::setSkok(double skok)
 	{
 		//nie jestem troche pewny co do tego
-		if (skok < 0) { throw invalid_argument("Wartosc jest niepoprawna"); }
+		if (skok < 0) { throw std::invalid_argument("Wartosc jest niepoprawna"); }
 		m_ui.push_front(skok);
-	}
-	void setVektory(vector<double> vec_a, vector<double> vec_b)
+	}*/
+	void ARX::setVektory(std::vector<double> vec_a, std::vector<double> vec_b)
 	{
 		//trzeba dopisac zabezpieczenia, chociaz ja zadnych nie widze
 		m_vec_a = vec_a;
 		m_vec_b = vec_b;
 	}
-	void setIteracje(int i)
+	void ARX::setIteracje(int i)
 	{
-		if (i <= 0) { throw invalid_argument("nie wykonujesz obliczen"); }
+		if (i <= 0) { throw std::invalid_argument("nie wykonujesz obliczen"); }
 		m_iteracje = i;
 	}
-	void setDelay(int k)
+	void ARX::setDelay(int k)
 	{
-		if (k < 0) { throw invalid_argument("Wartosc jest niepoprawna"); }
+		if (k < 0) { throw std::invalid_argument("Wartosc jest niepoprawna"); }
 		m_delay = k;
 	}
-	void reset()
+	void ARX::reset()
 	{
 		fill(m_ui.begin(), m_ui.end(), 0.0);
 		fill(m_yi.begin(), m_yi.end(), 0.0);
 	}
-};
 
-class PID
-{
-protected:
-	double m_kp;
-	double m_ti;
-	double m_td;
-	double m_suma;
-	double m_pop_blad;
-	bool m_resetI;
 
-public:
-	PID(double p, double i, double d)
-		:m_kp(p), m_ti(i), m_td(d), m_suma(0.0), m_pop_blad(0.0) {}
 
-	double oblicz(double cel, double zmierzone)
+	PID::PID(double p, double i, double d)
+		:m_kp(p), m_ti(i), m_td(d), m_suma(0.0), m_pop_blad(0.0), m_resetI(false) {}
+
+	double PID::oblicz(double cel, double zmierzone)
 	{
 		double blad = cel - zmierzone;
 		double P = m_kp * blad;
@@ -204,28 +138,29 @@ public:
 			I = 0.0;
 		}
 		else {
-			I = m_suma / m_ti;
+			I = (m_suma / m_ti);
 		}
 
 		double D = m_td * (blad - m_pop_blad);
+		m_pop_blad = blad;
 
 		return P + I + D;
 	}
 
-	void reset()
+	void PID::reset()
 	{
 		m_pop_blad = 0.0;
 		m_suma = 0.0;
 	}
 
-	void setParametry(double kp, double ti, double td)
+	void PID::setParametry(double kp, double ti, double td)
 	{
 		m_kp = kp;
 		m_ti = ti;
 		m_td = td;
 	}
 
-	void wylaczResetI(bool wlaczone)
+	void PID::wylaczResetI(bool wlaczone)
 	{
 		m_resetI = wlaczone;
 		if (wlaczone)
@@ -233,38 +168,29 @@ public:
 			m_suma = 0.0;
 		}
 	}
-};
 
-class WartoscZadana {
-protected:
-	TypSygnalu m_typsygnalu;
-	double m_amplituda;
-	double m_okres;
-	double m_cykl;
-	int m_aktywacja;
-	int m_czas;
-public:
-	WartoscZadana() : m_typsygnalu(skok), m_amplituda(1.0), m_okres(1.0), m_cykl(0.5), m_aktywacja(0), m_czas(0) {}
-	void ustawskok(double amplituda, int aktywacja)
+
+	WartoscZadana::WartoscZadana() : m_typsygnalu(skok), m_amplituda(1.0), m_okres(1.0), m_cykl(0.5), m_aktywacja(0), m_czas(0) {}
+	void WartoscZadana::ustawskok(double amplituda, int aktywacja)
 	{
 		m_typsygnalu = skok;
 		m_amplituda = amplituda;
 		m_aktywacja = aktywacja;
 	}
-	void ustawsinusoide(double amplituda, double okres)
+	void WartoscZadana::ustawsinusoide(double amplituda, double okres)
 	{
 		m_typsygnalu = sinusoida;
 		m_amplituda = amplituda;
 		m_okres = okres;
 	}
-	void ustawprostokatny(double amplituda, double okres, double cykl)
+	void WartoscZadana::ustawprostokatny(double amplituda, double okres, double cykl)
 	{
 		m_typsygnalu = prostokatny;
 		m_amplituda = amplituda;
 		m_okres = okres;
 		m_cykl = cykl;
 	}
-	double generuj()
+	double WartoscZadana::generuj()
 	{
 		double wartosc = 0.0;
 
@@ -294,8 +220,8 @@ public:
 		m_czas++;
 		return wartosc;
 	}
-	void reset()
+	void WartoscZadana::reset()
 	{
 		m_czas = 0;
 	}
-};
+

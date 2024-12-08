@@ -1,25 +1,27 @@
 #pragma once
 #include <iostream>
 #include <deque>
+#include <vector>
 #include <array>
 #include <random>
+#include <memory>
 #include <cmath>
-
-using namespace std;
+#include <stdexcept>
 
 class Symulacja
 {
 protected:
 	//Nazwy pisze na szybko, do sprawdzenia
-	unique_ptr<ARX> m_ARX;
-	unique_ptr<PID> m_PID;
+	std::unique_ptr<class ARX> m_ARX;
+	std::unique_ptr<class PID> m_PID;
 	double m_zadane;
 	double m_zmierzone;
 public:
 	//Musze sprawdzic jak sie wyklucza konstruktor domyslny
-	void wykonajKrok();
+	//void wykonajKrok();
 	Symulacja() = delete; // wykluczylem konstruktor domyslny
-	Symulacja(unique_ptr<ARX> arx, unique_ptr<PID> pid);
+	Symulacja(std::unique_ptr<ARX> arx, std::unique_ptr<PID> pid)
+		: m_ARX(std::move(arx)), m_PID(std::move(pid)), m_zadane(0.0), m_zmierzone(0.0) {}
 	void setZadane(double zadane);
 	double krok();
 	void reset();
@@ -27,27 +29,27 @@ public:
 	class ARX
 	{
 	protected:
-		deque<double> m_yi = { 0 };
-		vector<double> m_vec_a;
-		vector<double> m_vec_b;
+		std::deque<double> m_yi;
+		std::vector<double> m_vec_a;
+		std::vector<double> m_vec_b;
 		//tymczasowo tak iteracje bo trzeba przerobic pod QTIMER, ewentualnie mo¿emy statycznie to zrobiæ
-		int m_iteracje = 0;
-		int m_delay = 0;
+		int m_iteracje;
+		int m_delay;
 		double m_zaklocenia;
-		deque<double> m_ui;
-		default_random_engine generator;
-		normal_distribution<double> gzaklocen;
+		std::deque<double> m_ui;
+		std::default_random_engine generator;
+		std::normal_distribution<double> gzaklocen;
 
 		//zaklocenia beda losowane
 	public:
-		double wykonajKrok();
+		//double wykonajKrok();
 		double krok(double u);
 		void setZaklocenia(double zaklocenia);
-		void czyJuz();
-		ARX(const vector<double>& vec_a, const vector<double>& vec_b, int delay, int iteracje, double zaklocenia = 0.0);
-		void setZadane(deque<double> u);
-		void setSkok(double skok);
-		void setVektory(vector<double> vec_a, vector<double> vec_b);
+		//void czyJuz();
+		ARX(const std::vector<double>& vec_a, const std::vector<double>& vec_b, int delay, int iteracje, double zaklocenia = 0.0);
+		//void setZadane(std::deque<double> u);
+		//void setSkok(double skok);
+		void setVektory(std::vector<double> vec_a, std::vector<double> vec_b);
 		void setIteracje(int i);
 		void setDelay(int k);
 		void reset();
