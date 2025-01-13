@@ -29,8 +29,8 @@ int main()
         auto arx = std::make_unique<ARX>(A, B, delay, iteracje, zaklocenia);
 
         // Ustawienia regulatora PID
-        double kp = 0.2;
-        double ti = 7.0;
+        double kp = 0.5;
+        double ti = 10.0;
         double td = 0.1;
 
         auto pid = std::make_unique<PID>(kp, ti, td);
@@ -40,7 +40,7 @@ int main()
 
         // Generator wartoœci zadanej
         WartoscZadana sygnal;
-        sygnal.ustawskok(1.0, 10); // Skok jednostkowy aktywowany w kroku 10
+        sygnal.ustawskok(1.0, 3); // Skok jednostkowy aktywowany w kroku 10
 
         const int krokisymulacji = 50;
 
