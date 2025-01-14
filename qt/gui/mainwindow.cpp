@@ -201,6 +201,7 @@ void MainWindow::drawAxes() {
         label->setPos(i, 5);
     }
 
+
     m_scene->addLine(0, -100, 0, 100, QPen(Qt::black)); // Zwiększony zakres Y
     for (int i = -100; i <= 100; i += 20) { // Dostosowanie opisów osi
         QGraphicsTextItem* label = m_scene_2->addText(QString::number(i / 10.0)); // Etykiety w rzeczywistej skali
