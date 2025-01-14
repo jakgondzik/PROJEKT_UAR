@@ -154,7 +154,7 @@ void MainWindow::updateAllParams() {
 void MainWindow::drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange) {
     scene->addLine(0, 0, xAxisLength, 0, QPen(Qt::black));
     for (int i = 0; i <= xAxisLength; i += 100) {
-        QGraphicsTextItem* label = scene->addText(QString::number(i));
+        QGraphicsTextItem* label = scene->addText(QString::number(i/10.0));
         label->setPos(i, 5);
     }
 

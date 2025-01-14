@@ -67,6 +67,10 @@ public:
     QLabel *label_14;
     QLineEdit *wyjscieLabel;
     QGraphicsView *graphicsView3;
+    QLabel *label_15;
+    QLabel *label_16;
+    QLabel *label_17;
+    QLabel *label_18;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -259,6 +263,18 @@ public:
         graphicsView3 = new QGraphicsView(centralwidget);
         graphicsView3->setObjectName(QString::fromUtf8("graphicsView3"));
         graphicsView3->setGeometry(QRect(110, 370, 1000, 180));
+        label_15 = new QLabel(centralwidget);
+        label_15->setObjectName(QString::fromUtf8("label_15"));
+        label_15->setGeometry(QRect(10, 60, 91, 16));
+        label_16 = new QLabel(centralwidget);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+        label_16->setGeometry(QRect(10, 80, 101, 16));
+        label_17 = new QLabel(centralwidget);
+        label_17->setObjectName(QString::fromUtf8("label_17"));
+        label_17->setGeometry(QRect(40, 260, 51, 16));
+        label_18 = new QLabel(centralwidget);
+        label_18->setObjectName(QString::fromUtf8("label_18"));
+        label_18->setGeometry(QRect(30, 450, 61, 16));
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -290,6 +306,10 @@ public:
         resetButton->setText(QCoreApplication::translate("MainWindow", "RESET", nullptr));
         label_13->setText(QCoreApplication::translate("MainWindow", "Wej\305\233cie", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "Wyj\305\233cie", nullptr));
+        label_15->setText(QCoreApplication::translate("MainWindow", "Wartosc Zadana", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "Wartosc zmierzona", nullptr));
+        label_17->setText(QCoreApplication::translate("MainWindow", "Uchyb", nullptr));
+        label_18->setText(QCoreApplication::translate("MainWindow", "Sterowanie", nullptr));
     } // retranslateUi
 
 };
