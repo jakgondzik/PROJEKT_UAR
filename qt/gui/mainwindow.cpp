@@ -157,6 +157,7 @@ void MainWindow::updateSimulation() {
         ui->zadaneLabel->setText(QString::number(setpoint, 'f', 2));
         ui->wyjscieLabel->setText(QString::number(output, 'f', 2));
 
+
         // Przesuwanie wykresu w lewo, aby najstarszy widoczny moment to 60 sekund wstecz
         int windowWidth = 600; // Odpowiada 60 sekundom przy 100 ms interwale
         int xStart = std::max(0, m_time - windowWidth);
