@@ -29,6 +29,18 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
+<<<<<<< Updated upstream
+=======
+    QPushButton *resetButton;
+    QGraphicsView *graphicsView1;
+    QLineEdit *zadaneLabel;
+    QLineEdit *wyjscieLabel;
+    QLabel *label_13;
+    QLabel *label_14;
+    QWidget *layoutWidget;
+    QGridLayout *gridLayout;
+    QLabel *label;
+>>>>>>> Stashed changes
     QLineEdit *kpLabel;
     QLineEdit *tiLabel;
     QLineEdit *tdLabel;
@@ -59,11 +71,15 @@ public:
     QLabel *label_11;
     QLabel *label_12;
     QLineEdit *aktywacjaLabel;
+<<<<<<< Updated upstream
     QPushButton *aktualizujButton;
     QLabel *label_13;
     QLabel *label_14;
     QMenuBar *menubar;
     QMenu *menuUAR;
+=======
+    QGraphicsView *graphicsView2;
+>>>>>>> Stashed changes
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -106,6 +122,7 @@ public:
         resetButton = new QPushButton(centralwidget);
         resetButton->setObjectName(QString::fromUtf8("resetButton"));
         resetButton->setGeometry(QRect(1270, 520, 91, 51));
+<<<<<<< Updated upstream
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setGeometry(QRect(10, 0, 1221, 491));
@@ -133,6 +150,11 @@ public:
         label_8 = new QLabel(centralwidget);
         label_8->setObjectName(QString::fromUtf8("label_8"));
         label_8->setGeometry(QRect(700, 510, 71, 16));
+=======
+        graphicsView1 = new QGraphicsView(centralwidget);
+        graphicsView1->setObjectName(QString::fromUtf8("graphicsView1"));
+        graphicsView1->setGeometry(QRect(10, 10, 1221, 231));
+>>>>>>> Stashed changes
         zadaneLabel = new QLineEdit(centralwidget);
         zadaneLabel->setObjectName(QString::fromUtf8("zadaneLabel"));
         zadaneLabel->setGeometry(QRect(1250, 100, 121, 71));
@@ -172,6 +194,153 @@ public:
         label_14 = new QLabel(centralwidget);
         label_14->setObjectName(QString::fromUtf8("label_14"));
         label_14->setGeometry(QRect(1290, 240, 49, 16));
+<<<<<<< Updated upstream
+=======
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(40, 510, 1183, 56));
+        gridLayout = new QGridLayout(layoutWidget);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(layoutWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        gridLayout->addWidget(label, 0, 0, 1, 1);
+
+        kpLabel = new QLineEdit(layoutWidget);
+        kpLabel->setObjectName(QString::fromUtf8("kpLabel"));
+
+        gridLayout->addWidget(kpLabel, 0, 1, 1, 1);
+
+        label_3 = new QLabel(layoutWidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        gridLayout->addWidget(label_3, 0, 2, 1, 1);
+
+        tdLabel = new QLineEdit(layoutWidget);
+        tdLabel->setObjectName(QString::fromUtf8("tdLabel"));
+
+        gridLayout->addWidget(tdLabel, 0, 3, 1, 1);
+
+        label_5 = new QLabel(layoutWidget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        gridLayout->addWidget(label_5, 0, 4, 1, 1);
+
+        vecbLabel = new QLineEdit(layoutWidget);
+        vecbLabel->setObjectName(QString::fromUtf8("vecbLabel"));
+
+        gridLayout->addWidget(vecbLabel, 0, 5, 1, 1);
+
+        label_7 = new QLabel(layoutWidget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+
+        gridLayout->addWidget(label_7, 0, 6, 1, 1);
+
+        zakloceniaLabel = new QLineEdit(layoutWidget);
+        zakloceniaLabel->setObjectName(QString::fromUtf8("zakloceniaLabel"));
+
+        gridLayout->addWidget(zakloceniaLabel, 0, 7, 1, 1);
+
+        label_10 = new QLabel(layoutWidget);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+
+        gridLayout->addWidget(label_10, 0, 8, 1, 1);
+
+        okresLabel = new QLineEdit(layoutWidget);
+        okresLabel->setObjectName(QString::fromUtf8("okresLabel"));
+
+        gridLayout->addWidget(okresLabel, 0, 9, 1, 1);
+
+        label_8 = new QLabel(layoutWidget);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+
+        gridLayout->addWidget(label_8, 0, 10, 1, 1);
+
+        sygnalcomboBox = new QComboBox(layoutWidget);
+        sygnalcomboBox->setObjectName(QString::fromUtf8("sygnalcomboBox"));
+
+        gridLayout->addWidget(sygnalcomboBox, 0, 11, 1, 1);
+
+        aktualizujButton = new QPushButton(layoutWidget);
+        aktualizujButton->setObjectName(QString::fromUtf8("aktualizujButton"));
+
+        gridLayout->addWidget(aktualizujButton, 0, 12, 2, 1);
+
+        startButton = new QPushButton(layoutWidget);
+        startButton->setObjectName(QString::fromUtf8("startButton"));
+
+        gridLayout->addWidget(startButton, 0, 13, 2, 1);
+
+        stopButton = new QPushButton(layoutWidget);
+        stopButton->setObjectName(QString::fromUtf8("stopButton"));
+
+        gridLayout->addWidget(stopButton, 0, 14, 2, 1);
+
+        label_2 = new QLabel(layoutWidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+
+        tiLabel = new QLineEdit(layoutWidget);
+        tiLabel->setObjectName(QString::fromUtf8("tiLabel"));
+
+        gridLayout->addWidget(tiLabel, 1, 1, 1, 1);
+
+        label_4 = new QLabel(layoutWidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        gridLayout->addWidget(label_4, 1, 2, 1, 1);
+
+        vecaLabel = new QLineEdit(layoutWidget);
+        vecaLabel->setObjectName(QString::fromUtf8("vecaLabel"));
+
+        gridLayout->addWidget(vecaLabel, 1, 3, 1, 1);
+
+        label_6 = new QLabel(layoutWidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        gridLayout->addWidget(label_6, 1, 4, 1, 1);
+
+        delayLabel = new QLineEdit(layoutWidget);
+        delayLabel->setObjectName(QString::fromUtf8("delayLabel"));
+
+        gridLayout->addWidget(delayLabel, 1, 5, 1, 1);
+
+        label_9 = new QLabel(layoutWidget);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+
+        gridLayout->addWidget(label_9, 1, 6, 1, 1);
+
+        amplitudaLabel = new QLineEdit(layoutWidget);
+        amplitudaLabel->setObjectName(QString::fromUtf8("amplitudaLabel"));
+
+        gridLayout->addWidget(amplitudaLabel, 1, 7, 1, 1);
+
+        label_11 = new QLabel(layoutWidget);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+
+        gridLayout->addWidget(label_11, 1, 8, 1, 1);
+
+        cyklLabel = new QLineEdit(layoutWidget);
+        cyklLabel->setObjectName(QString::fromUtf8("cyklLabel"));
+
+        gridLayout->addWidget(cyklLabel, 1, 9, 1, 1);
+
+        label_12 = new QLabel(layoutWidget);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+
+        gridLayout->addWidget(label_12, 1, 10, 1, 1);
+
+        aktywacjaLabel = new QLineEdit(layoutWidget);
+        aktywacjaLabel->setObjectName(QString::fromUtf8("aktywacjaLabel"));
+
+        gridLayout->addWidget(aktywacjaLabel, 1, 11, 1, 1);
+
+        graphicsView2 = new QGraphicsView(centralwidget);
+        graphicsView2->setObjectName(QString::fromUtf8("graphicsView2"));
+        graphicsView2->setGeometry(QRect(10, 240, 1221, 231));
+>>>>>>> Stashed changes
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));

@@ -5,10 +5,11 @@
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), m_timer(new QTimer(this)), m_scene(new QGraphicsScene(this)), m_time(0), m_prevSetpoint(0.0), m_prevOutput(0.0) {
+    : QMainWindow(parent), ui(new Ui::MainWindow), m_timer(new QTimer(this)), m_scene1(new QGraphicsScene(this)), m_scene2(new QGraphicsScene(this)), m_time(0), m_prevSetpoint(0.0), m_prevOutput(0.0) {
 
     ui->setupUi(this);
 
+<<<<<<< Updated upstream
     // Podłączenie sceny do QGraphicsView
     ui->graphicsView->setScene(m_scene);
 
@@ -17,6 +18,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->sygnalcomboBox->addItem("Skok");
     ui->sygnalcomboBox->addItem("Sinusoida");
     ui->sygnalcomboBox->addItem("Prostokątny");
+=======
+    // Podłączenie scen do QGraphicsView
+    ui->graphicsView1->setScene(m_scene1);
+    ui->graphicsView2->setScene(m_scene2);
+>>>>>>> Stashed changes
 
     // Podłączenie przycisków
     connect(ui->startButton, &QPushButton::clicked, this, &MainWindow::startSimulation);
@@ -53,12 +59,14 @@ void MainWindow::initSimulation() {
     // Inicjalizacja klasy Symulacja
     m_symulacja = std::make_unique<Symulacja>(std::move(arx), std::move(pid), std::move(m_wartoscZadana));
 
-    // Wyczyszczenie sceny
+    // Wyczyszczenie scen
     m_time = 0;
     m_prevSetpoint = 0.0;
     m_prevOutput = 0.0;
-    m_scene->clear();
-    drawAxes();
+    m_scene1->clear();
+    m_scene2->clear();
+    drawAxes(m_scene1, 600, 100); // Osie dla sceny 1
+    drawAxes(m_scene2, 600, 100); // Osie dla sceny 2
 }
 
 void MainWindow::startSimulation() {
@@ -66,6 +74,7 @@ void MainWindow::startSimulation() {
         if (!m_symulacja) {
             throw std::logic_error("Symulacja nie została poprawnie zainicjalizowana.");
         }
+
         // Wyświetlanie aktualnych wartości w polach tekstowych
         auto arx = m_symulacja->getARX();
         auto pid = m_symulacja->getPID();
@@ -81,11 +90,8 @@ void MainWindow::startSimulation() {
             ui->tiLabel->setText(QString::number(pid->getTi()));
             ui->tdLabel->setText(QString::number(pid->getTd()));
         }
-        ui->graphicsView->fitInView(m_scene->sceneRect(), Qt::KeepAspectRatio);
 
-
-
-        m_timer->start(100);  // Interwał 100 ms
+        m_timer->start(100); // Start symulacji z interwałem 100 ms
     } catch (const std::exception& ex) {
         QMessageBox::critical(this, "Błąd", ex.what());
     }
@@ -149,27 +155,71 @@ void MainWindow::updateAllParams() {
     }
 }
 
+void MainWindow::drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange) {
+    scene->addLine(0, 0, xAxisLength, 0, QPen(Qt::black));
+    for (int i = 0; i <= xAxisLength; i += 100) {
+        QGraphicsTextItem* label = scene->addText(QString::number(i));
+        label->setPos(i, 5);
+    }
+
+    scene->addLine(0, -yAxisRange, 0, yAxisRange, QPen(Qt::black));
+    for (int i = -yAxisRange; i <= yAxisRange; i += 20) {
+        QGraphicsTextItem* label = scene->addText(QString::number(i / 10.0));
+        label->setPos(-25, -i);
+    }
+}
+
 void MainWindow::updateSimulation() {
     try {
         double setpoint = m_symulacja->getWartoscZadana()->generuj();
+        double measured = m_prevOutput; // Ostatnia zmierzona wartość
+        double error = setpoint - measured;
+
+        // Pobranie składowych P, I, D sterowania
+        double kp = m_symulacja->getPID()->getKp();
+        double ti = m_symulacja->getPID()->getTi();
+        double td = m_symulacja->getPID()->getTd();
+        double pComponent = kp * error;
+        double iComponent = (ti == 0.0) ? 0.0 : (kp / ti * error * m_time);
+        double dComponent = td * kp * (error - (m_prevSetpoint - measured));
+        double controlSignal = pComponent + iComponent + dComponent;
+
         m_symulacja->setZadane(setpoint);
         double output = m_symulacja->krok();
 
         ui->zadaneLabel->setText(QString::number(setpoint, 'f', 2));
         ui->wyjscieLabel->setText(QString::number(output, 'f', 2));
 
+<<<<<<< Updated upstream
         // Przesuwanie wykresu w lewo, aby najstarszy widoczny moment to 60 sekund wstecz
+=======
+        // Przesuwanie wykresów w lewo, aby najstarszy widoczny moment to 60 sekund wstecz
+>>>>>>> Stashed changes
         int windowWidth = 600; // Odpowiada 60 sekundom przy 100 ms interwale
         int xStart = std::max(0, m_time - windowWidth);
-        m_scene->setSceneRect(xStart, -100, windowWidth, 200); // Zwiększony zakres Y
+        m_scene1->setSceneRect(xStart, -100, windowWidth, 200); // Scena 1 zakres
+        m_scene2->setSceneRect(xStart, -100, windowWidth, 200); // Scena 2 zakres
 
-        // Skalowanie wartości wyświetlanych na wykresie
+        // Skalowanie wartości wyświetlanych na wykresach
         double scaledSetpoint = setpoint * 10; // Skalowanie na potrzeby wykresu
         double scaledOutput = output * 10;
+        double scaledError = error * 10;
+        double scaledP = pComponent * 10;
+        double scaledI = iComponent * 10;
+        double scaledD = dComponent * 10;
+        double scaledControlSignal = controlSignal * 10;
 
         if (m_time > 0) {
-            m_scene->addLine(m_time - 1, -m_prevSetpoint * 10, m_time, -scaledSetpoint, QPen(Qt::blue));
-            m_scene->addLine(m_time - 1, -m_prevOutput * 10, m_time, -scaledOutput, QPen(Qt::red));
+            // Wykres wartości zadanej, wyjściowej i sterowania na scenie 1
+            m_scene1->addLine(m_time - 1, -m_prevSetpoint * 10, m_time, -scaledSetpoint, QPen(Qt::blue));
+            m_scene1->addLine(m_time - 1, -m_prevOutput * 10, m_time, -scaledOutput, QPen(Qt::red));
+            m_scene1->addLine(m_time - 1, 0, m_time, -scaledControlSignal, QPen(Qt::yellow));
+            m_scene1->addLine(m_time - 1, 0, m_time, -scaledP, QPen(Qt::cyan));       // Składowa P
+            m_scene1->addLine(m_time - 1, 0, m_time, -scaledI, QPen(Qt::magenta));    // Składowa I
+            m_scene1->addLine(m_time - 1, 0, m_time, -scaledD, QPen(Qt::darkGray));  // Składowa D
+
+            // Wykres uchybu na scenie 2
+            m_scene2->addLine(m_time - 1, 0, m_time, -scaledError, QPen(Qt::green));
         }
 
         m_prevSetpoint = setpoint;
@@ -178,20 +228,5 @@ void MainWindow::updateSimulation() {
     } catch (const std::exception& ex) {
         QMessageBox::critical(this, "Błąd symulacji", ex.what());
         stopSimulation();
-    }
-}
-
-void MainWindow::drawAxes() {
-    int xAxisLength = 600; // Długość osi X odpowiada 60 sekundom
-    m_scene->addLine(0, 0, xAxisLength, 0, QPen(Qt::black));
-    for (int i = 0; i <= xAxisLength; i += 100) {
-        QGraphicsTextItem* label = m_scene->addText(QString::number(i / 10.0));
-        label->setPos(i, 5);
-    }
-
-    m_scene->addLine(0, -100, 0, 100, QPen(Qt::black)); // Zwiększony zakres Y
-    for (int i = -100; i <= 100; i += 20) { // Dostosowanie opisów osi
-        QGraphicsTextItem* label = m_scene->addText(QString::number(i / 10.0)); // Etykiety w rzeczywistej skali
-        label->setPos(-25, -i);
     }
 }

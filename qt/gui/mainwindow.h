@@ -2,8 +2,8 @@
 
 #include <QMainWindow>
 #include <QTimer>
-#include <memory>
 #include <QGraphicsScene>
+#include <memory>
 #include "klasy.h"
 
 QT_BEGIN_NAMESPACE
@@ -34,8 +34,10 @@ private:
     // Timer do symulacji
     QTimer *m_timer;
 
-    // Wykres
-    QGraphicsScene *m_scene;
+    // Wykresy
+    QGraphicsScene *m_scene1; // Scena dla zadane, zmierzone, sterowanie
+    QGraphicsScene *m_scene2; // Scena dla uchybu
+
     int m_time;               // Aktualny czas symulacji
     double m_prevSetpoint;    // Poprzednia wartość zadana
     double m_prevOutput;      // Poprzednia wartość wyjściowa
@@ -45,5 +47,5 @@ private:
     void updateSignalParams();// Pobiera parametry sygnału z GUI i ustawia w WartoscZadana
     void updateARXParams();   // Aktualizuje parametry ARX
     void updatePIDParams();   // Aktualizuje parametry PID
-    void drawAxes();          // Rysuje osie i skale na wykresie
+    void drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange); // Rysuje osie na scenie
 };

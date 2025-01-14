@@ -203,6 +203,10 @@ Makefile: ..\..\gui.pro F:\qt\6.3.1\msvc2019_64\mkspecs\win32-msvc\qmake.conf F:
 		F:\qt\6.3.1\msvc2019_64\mkspecs\features\qt_config.prf \
 		F:\qt\6.3.1\msvc2019_64\mkspecs\win32-msvc\qmake.conf \
 		F:\qt\6.3.1\msvc2019_64\mkspecs\features\spec_post.prf \
+<<<<<<< Updated upstream
+=======
+		.qmake.stash \
+>>>>>>> Stashed changes
 		F:\qt\6.3.1\msvc2019_64\mkspecs\features\exclusive_builds.prf \
 		F:\qt\6.3.1\msvc2019_64\mkspecs\common\msvc-version.conf \
 		F:\qt\6.3.1\msvc2019_64\mkspecs\features\toolchain.prf \
@@ -233,7 +237,10 @@ Makefile: ..\..\gui.pro F:\qt\6.3.1\msvc2019_64\mkspecs\win32-msvc\qmake.conf F:
 		F:\qt\6.3.1\msvc2019_64\lib\Qt6Gui.prl \
 		F:\qt\6.3.1\msvc2019_64\lib\Qt6Core.prl \
 		F:\qt\6.3.1\msvc2019_64\lib\Qt6EntryPoint.prl \
+<<<<<<< Updated upstream
 		.qmake.stash \
+=======
+>>>>>>> Stashed changes
 		F:\qt\6.3.1\msvc2019_64\mkspecs\features\build_pass.prf \
 		F:\qt\6.3.1\msvc2019_64\lib\Qt6Widgetsd.prl \
 		F:\qt\6.3.1\msvc2019_64\lib\Qt6Guid.prl \
@@ -359,6 +366,10 @@ F:\qt\6.3.1\msvc2019_64\mkspecs\features\qt_functions.prf:
 F:\qt\6.3.1\msvc2019_64\mkspecs\features\qt_config.prf:
 F:\qt\6.3.1\msvc2019_64\mkspecs\win32-msvc\qmake.conf:
 F:\qt\6.3.1\msvc2019_64\mkspecs\features\spec_post.prf:
+<<<<<<< Updated upstream
+=======
+.qmake.stash:
+>>>>>>> Stashed changes
 F:\qt\6.3.1\msvc2019_64\mkspecs\features\exclusive_builds.prf:
 F:\qt\6.3.1\msvc2019_64\mkspecs\common\msvc-version.conf:
 F:\qt\6.3.1\msvc2019_64\mkspecs\features\toolchain.prf:
@@ -389,7 +400,10 @@ F:\qt\6.3.1\msvc2019_64\lib\Qt6Widgets.prl:
 F:\qt\6.3.1\msvc2019_64\lib\Qt6Gui.prl:
 F:\qt\6.3.1\msvc2019_64\lib\Qt6Core.prl:
 F:\qt\6.3.1\msvc2019_64\lib\Qt6EntryPoint.prl:
+<<<<<<< Updated upstream
 .qmake.stash:
+=======
+>>>>>>> Stashed changes
 F:\qt\6.3.1\msvc2019_64\mkspecs\features\build_pass.prf:
 F:\qt\6.3.1\msvc2019_64\lib\Qt6Widgetsd.prl:
 F:\qt\6.3.1\msvc2019_64\lib\Qt6Guid.prl:

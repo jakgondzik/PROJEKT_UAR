@@ -133,13 +133,13 @@
      <string>RESET</string>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="QGraphicsView" name="graphicsView1">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
+      <y>10</y>
       <width>1221</width>
-      <height>491</height>
+      <height>231</height>
      </rect>
     </property>
    </widget>
@@ -413,7 +413,20 @@
      <string>UAR</string>
     </property>
    </widget>
+<<<<<<< Updated upstream
    <addaction name="menuUAR"/>
+=======
+   <widget class="QGraphicsView" name="graphicsView2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>1221</width>
+      <height>231</height>
+     </rect>
+    </property>
+   </widget>
+>>>>>>> Stashed changes
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

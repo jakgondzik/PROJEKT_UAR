@@ -658,6 +658,70 @@ debug\mainwindow.obj: ..\..\mainwindow.cpp ..\..\mainwindow.h \
 		F:\qt\6.3.1\msvc2019_64\include\QtGui\qpen.h \
 		..\..\klasy.h \
 		ui_mainwindow.h \
+<<<<<<< Updated upstream
+=======
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\QVariant \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QApplication \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qapplication.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qcoreapplication.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qeventloop.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qfuture.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qfutureinterface.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qmutex.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qresultstore.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qfuture_impl.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qthreadpool.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qthread.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qdeadlinetimer.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qelapsedtimer.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qrunnable.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qexception.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qpromise.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qguiapplication.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qinputmethod.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qlocale.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qguiapplication_platform.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QComboBox \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qcombobox.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qstyleoption.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qvalidator.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qregularexpression.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qslider.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qabstractslider.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qstyle.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qtabbar.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qrubberband.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qframe.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtCore\qabstractitemmodel.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QGraphicsView \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qgraphicsview.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qpainter.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qtextoption.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qscrollarea.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QGridLayout \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qgridlayout.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qlayout.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qlayoutitem.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qboxlayout.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QLabel \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qlabel.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qpicture.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qtextdocument.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QLineEdit \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qlineedit.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qtextcursor.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtGui\qtextformat.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QPushButton \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qpushbutton.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qabstractbutton.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QStatusBar \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qstatusbar.h \
+		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QWidget \
+>>>>>>> Stashed changes
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QMessageBox \
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qmessagebox.h \
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qdialog.h \
