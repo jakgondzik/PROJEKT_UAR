@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Podłączenie sceny do QGraphicsView
     ui->graphicsView->setScene(m_scene);
 
+
     // Dodanie opcji do listy rozwijanej
     ui->sygnalcomboBox->addItem("Skok");
     ui->sygnalcomboBox->addItem("Sinusoida");
