@@ -170,6 +170,7 @@ void MainWindow::updateSimulation() {
         if (m_time > 0) {
             m_scene->addLine(m_time - 1, -m_prevSetpoint * 10, m_time, -scaledSetpoint, QPen(Qt::blue));
             m_scene->addLine(m_time - 1, -m_prevOutput * 10, m_time, -scaledOutput, QPen(Qt::red));
+
         }
 
         m_prevSetpoint = setpoint;
@@ -194,4 +195,15 @@ void MainWindow::drawAxes() {
         QGraphicsTextItem* label = m_scene->addText(QString::number(i / 10.0)); // Etykiety w rzeczywistej skali
         label->setPos(-25, -i);
     }
+   /* m_scene->addLine(0, 0, xAxisLength, 0, QPen(Qt::black));
+    for (int i = 0; i <= xAxisLength; i += 100) {
+        QGraphicsTextItem* label = m_scene_2->addText(QString::number(i / 10.0));
+        label->setPos(i, 5);
+    }
+
+    m_scene->addLine(0, -100, 0, 100, QPen(Qt::black)); // Zwiększony zakres Y
+    for (int i = -100; i <= 100; i += 20) { // Dostosowanie opisów osi
+        QGraphicsTextItem* label = m_scene_2->addText(QString::number(i / 10.0)); // Etykiety w rzeczywistej skali
+        label->setPos(-25, -i);
+    }*/
 }
