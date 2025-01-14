@@ -35,7 +35,9 @@ private:
     QTimer *m_timer;
 
     // Wykres
-    QGraphicsScene *m_scene;
+    QGraphicsScene *m_scene1;
+    QGraphicsScene *m_scene2;
+    QGraphicsScene *m_scene3;
     int m_time;               // Aktualny czas symulacji
     double m_prevSetpoint;    // Poprzednia wartość zadana
     double m_prevOutput;      // Poprzednia wartość wyjściowa
@@ -45,5 +47,5 @@ private:
     void updateSignalParams();// Pobiera parametry sygnału z GUI i ustawia w WartoscZadana
     void updateARXParams();   // Aktualizuje parametry ARX
     void updatePIDParams();   // Aktualizuje parametry PID
-    void drawAxes();          // Rysuje osie i skale na wykresie
+    void drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange);          // Rysuje osie i skale na wykresie
 };
