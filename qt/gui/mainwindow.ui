@@ -14,7 +14,11 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+<<<<<<< Updated upstream
    <widget class="QLineEdit" name="kpLabel">
+=======
+   <widget class="QGraphicsView" name="graphicsView1">
+>>>>>>> Stashed changes
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -24,7 +28,11 @@
      </rect>
     </property>
    </widget>
+<<<<<<< Updated upstream
    <widget class="QLineEdit" name="tiLabel">
+=======
+   <widget class="QGraphicsView" name="graphicsView2">
+>>>>>>> Stashed changes
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -34,7 +42,11 @@
      </rect>
     </property>
    </widget>
+<<<<<<< Updated upstream
    <widget class="QLineEdit" name="tdLabel">
+=======
+   <widget class="QWidget" name="layoutWidget">
+>>>>>>> Stashed changes
     <property name="geometry">
      <rect>
       <x>190</x>

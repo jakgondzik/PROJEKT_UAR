@@ -20,6 +20,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
@@ -30,6 +31,7 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     QPushButton *resetButton;
     QGraphicsView *graphicsView1;
@@ -38,6 +40,12 @@ public:
     QLabel *label_13;
     QLabel *label_14;
     QWidget *layoutWidget;
+=======
+    QGraphicsView *graphicsView1;
+    QGraphicsView *graphicsView2;
+    QWidget *layoutWidget;
+    QGridLayout *gridLayout_2;
+>>>>>>> Stashed changes
     QGridLayout *gridLayout;
     QLabel *label;
 >>>>>>> Stashed changes
@@ -72,6 +80,7 @@ public:
     QLabel *label_12;
     QLineEdit *aktywacjaLabel;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     QPushButton *aktualizujButton;
     QLabel *label_13;
     QLabel *label_14;
@@ -79,6 +88,14 @@ public:
     QMenu *menuUAR;
 =======
     QGraphicsView *graphicsView2;
+>>>>>>> Stashed changes
+=======
+    QPushButton *resetButton;
+    QSplitter *splitter;
+    QLabel *label_13;
+    QLineEdit *zadaneLabel;
+    QLabel *label_14;
+    QLineEdit *wyjscieLabel;
 >>>>>>> Stashed changes
     QStatusBar *statusbar;
 
@@ -89,6 +106,7 @@ public:
         MainWindow->resize(1386, 636);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+<<<<<<< Updated upstream
         kpLabel = new QLineEdit(centralwidget);
         kpLabel->setObjectName(QString::fromUtf8("kpLabel"));
         kpLabel->setGeometry(QRect(60, 510, 71, 24));
@@ -202,6 +220,22 @@ public:
         gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
+=======
+        graphicsView1 = new QGraphicsView(centralwidget);
+        graphicsView1->setObjectName(QString::fromUtf8("graphicsView1"));
+        graphicsView1->setGeometry(QRect(110, 10, 1000, 250));
+        graphicsView2 = new QGraphicsView(centralwidget);
+        graphicsView2->setObjectName(QString::fromUtf8("graphicsView2"));
+        graphicsView2->setGeometry(QRect(110, 260, 1000, 250));
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(40, 560, 1271, 58));
+        gridLayout_2 = new QGridLayout(layoutWidget);
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+>>>>>>> Stashed changes
         label = new QLabel(layoutWidget);
         label->setObjectName(QString::fromUtf8("label"));
 
@@ -337,9 +371,36 @@ public:
 
         gridLayout->addWidget(aktywacjaLabel, 1, 11, 1, 1);
 
+<<<<<<< Updated upstream
         graphicsView2 = new QGraphicsView(centralwidget);
         graphicsView2->setObjectName(QString::fromUtf8("graphicsView2"));
         graphicsView2->setGeometry(QRect(10, 240, 1221, 231));
+>>>>>>> Stashed changes
+=======
+
+        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
+
+        resetButton = new QPushButton(layoutWidget);
+        resetButton->setObjectName(QString::fromUtf8("resetButton"));
+
+        gridLayout_2->addWidget(resetButton, 0, 1, 1, 1);
+
+        splitter = new QSplitter(centralwidget);
+        splitter->setObjectName(QString::fromUtf8("splitter"));
+        splitter->setGeometry(QRect(1160, 140, 161, 171));
+        splitter->setOrientation(Qt::Vertical);
+        label_13 = new QLabel(splitter);
+        label_13->setObjectName(QString::fromUtf8("label_13"));
+        splitter->addWidget(label_13);
+        zadaneLabel = new QLineEdit(splitter);
+        zadaneLabel->setObjectName(QString::fromUtf8("zadaneLabel"));
+        splitter->addWidget(zadaneLabel);
+        label_14 = new QLabel(splitter);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+        splitter->addWidget(label_14);
+        wyjscieLabel = new QLineEdit(splitter);
+        wyjscieLabel->setObjectName(QString::fromUtf8("wyjscieLabel"));
+        splitter->addWidget(wyjscieLabel);
 >>>>>>> Stashed changes
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -361,7 +422,18 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
+<<<<<<< Updated upstream
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+=======
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "UAR", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "kp", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "td", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "B", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "zaklocenia", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "okres", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "typ sygnalu", nullptr));
+        aktualizujButton->setText(QCoreApplication::translate("MainWindow", "AKTUALIZUJ", nullptr));
+>>>>>>> Stashed changes
         startButton->setText(QCoreApplication::translate("MainWindow", "START", nullptr));
         stopButton->setText(QCoreApplication::translate("MainWindow", "STOP", nullptr));
         resetButton->setText(QCoreApplication::translate("MainWindow", "RESET", nullptr));
@@ -377,10 +449,16 @@ public:
         label_10->setText(QCoreApplication::translate("MainWindow", "okres", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "cykl", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "czas aktywacji", nullptr));
+<<<<<<< Updated upstream
         aktualizujButton->setText(QCoreApplication::translate("MainWindow", "AKTUALIZUJ", nullptr));
         label_13->setText(QCoreApplication::translate("MainWindow", "Wej\305\233cie", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "Wyj\305\233cie", nullptr));
         menuUAR->setTitle(QCoreApplication::translate("MainWindow", "UAR", nullptr));
+=======
+        resetButton->setText(QCoreApplication::translate("MainWindow", "RESET", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "Wej\305\233cie", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "Wyj\305\233cie", nullptr));
+>>>>>>> Stashed changes
     } // retranslateUi
 
 };

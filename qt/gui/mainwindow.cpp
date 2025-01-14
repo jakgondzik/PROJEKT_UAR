@@ -5,15 +5,23 @@
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
+<<<<<<< Updated upstream
     : QMainWindow(parent), ui(new Ui::MainWindow), m_timer(new QTimer(this)), m_scene1(new QGraphicsScene(this)), m_scene2(new QGraphicsScene(this)), m_time(0), m_prevSetpoint(0.0), m_prevOutput(0.0) {
+=======
+    : QMainWindow(parent), ui(new Ui::MainWindow), m_timer(new QTimer(this)), m_scene1(new QGraphicsScene(this)), m_time(0), m_prevSetpoint(0.0), m_prevOutput(0.0) {
+>>>>>>> Stashed changes
 
     ui->setupUi(this);
 
 <<<<<<< Updated upstream
     // Podłączenie sceny do QGraphicsView
+<<<<<<< Updated upstream
     ui->graphicsView->setScene(m_scene);
 
 
+=======
+    ui->graphicsView1->setScene(m_scene);
+>>>>>>> Stashed changes
     // Dodanie opcji do listy rozwijanej
     ui->sygnalcomboBox->addItem("Skok");
     ui->sygnalcomboBox->addItem("Sinusoida");

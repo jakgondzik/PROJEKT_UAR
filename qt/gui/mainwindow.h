@@ -47,5 +47,9 @@ private:
     void updateSignalParams();// Pobiera parametry sygnału z GUI i ustawia w WartoscZadana
     void updateARXParams();   // Aktualizuje parametry ARX
     void updatePIDParams();   // Aktualizuje parametry PID
+<<<<<<< Updated upstream
     void drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange); // Rysuje osie na scenie
+=======
+    void drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange);          // Rysuje osie i skale na wykresie
+>>>>>>> Stashed changes
 };

@@ -659,7 +659,10 @@ debug\mainwindow.obj: ..\..\mainwindow.cpp ..\..\mainwindow.h \
 		..\..\klasy.h \
 		ui_mainwindow.h \
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 		F:\qt\6.3.1\msvc2019_64\include\QtCore\QVariant \
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QApplication \
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qapplication.h \
@@ -721,6 +724,9 @@ debug\mainwindow.obj: ..\..\mainwindow.cpp ..\..\mainwindow.h \
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QStatusBar \
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qstatusbar.h \
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QWidget \
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\QMessageBox \
 		F:\qt\6.3.1\msvc2019_64\include\QtWidgets\qmessagebox.h \

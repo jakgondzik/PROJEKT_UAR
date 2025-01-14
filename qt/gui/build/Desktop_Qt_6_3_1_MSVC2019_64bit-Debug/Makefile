@@ -204,6 +204,10 @@ Makefile: ..\..\gui.pro F:\qt\6.3.1\msvc2019_64\mkspecs\win32-msvc\qmake.conf F:
 		F:\qt\6.3.1\msvc2019_64\mkspecs\win32-msvc\qmake.conf \
 		F:\qt\6.3.1\msvc2019_64\mkspecs\features\spec_post.prf \
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+		.qmake.stash \
+>>>>>>> Stashed changes
 =======
 		.qmake.stash \
 >>>>>>> Stashed changes
@@ -238,7 +242,10 @@ Makefile: ..\..\gui.pro F:\qt\6.3.1\msvc2019_64\mkspecs\win32-msvc\qmake.conf F:
 		F:\qt\6.3.1\msvc2019_64\lib\Qt6Core.prl \
 		F:\qt\6.3.1\msvc2019_64\lib\Qt6EntryPoint.prl \
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		.qmake.stash \
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 		F:\qt\6.3.1\msvc2019_64\mkspecs\features\build_pass.prf \
@@ -367,6 +374,10 @@ F:\qt\6.3.1\msvc2019_64\mkspecs\features\qt_config.prf:
 F:\qt\6.3.1\msvc2019_64\mkspecs\win32-msvc\qmake.conf:
 F:\qt\6.3.1\msvc2019_64\mkspecs\features\spec_post.prf:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+.qmake.stash:
+>>>>>>> Stashed changes
 =======
 .qmake.stash:
 >>>>>>> Stashed changes
@@ -401,7 +412,10 @@ F:\qt\6.3.1\msvc2019_64\lib\Qt6Gui.prl:
 F:\qt\6.3.1\msvc2019_64\lib\Qt6Core.prl:
 F:\qt\6.3.1\msvc2019_64\lib\Qt6EntryPoint.prl:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 .qmake.stash:
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 F:\qt\6.3.1\msvc2019_64\mkspecs\features\build_pass.prf:
