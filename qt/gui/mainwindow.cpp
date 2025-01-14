@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Podłączenie sceny do QGraphicsView
     ui->graphicsView->setScene(m_scene);
-
     // Dodanie opcji do listy rozwijanej
     ui->sygnalcomboBox->addItem("Skok");
     ui->sygnalcomboBox->addItem("Sinusoida");
@@ -101,6 +100,7 @@ void MainWindow::resetSimulation() {
 }
 
 void MainWindow::updateAllParams() {
+
     try {
         // Tworzenie nowych obiektów na podstawie parametrów z GUI
         QStringList a_values = ui->vecaLabel->text().split(",");
