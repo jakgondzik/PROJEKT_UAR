@@ -18,34 +18,30 @@ public:
     ~MainWindow();
 
 private slots:
-    void startSimulation();   // Rozpoczyna symulację
-    void stopSimulation();    // Zatrzymuje symulację
-    void resetSimulation();   // Resetuje symulację
-    void updateSimulation();  // Aktualizuje dane symulacji i wykresy
-    void updateAllParams();   // Aktualizuje wszystkie parametry symulacji
+    void startSimulation();
+    void stopSimulation();
+    void resetSimulation();
+    void updateSimulation();
+    void updateAllParams();
 
 private:
     Ui::MainWindow *ui;
 
-    // Symulacja
     std::unique_ptr<Symulacja> m_symulacja;
     std::unique_ptr<WartoscZadana> m_wartoscZadana;
 
-    // Timer do symulacji
     QTimer *m_timer;
 
-    // Wykres
     QGraphicsScene *m_scene1;
     QGraphicsScene *m_scene2;
     QGraphicsScene *m_scene3;
-    int m_time;               // Aktualny czas symulacji
-    double m_prevSetpoint;    // Poprzednia wartość zadana
-    double m_prevOutput;      // Poprzednia wartość wyjściowa
+    int m_time;
+    double m_prevSetpoint;
+    double m_prevOutput;
 
-    // Funkcje pomocnicze
-    void initSimulation();    // Inicjalizuje symulację
-    void updateSignalParams();// Pobiera parametry sygnału z GUI i ustawia w WartoscZadana
-    void updateARXParams();   // Aktualizuje parametry ARX
-    void updatePIDParams();   // Aktualizuje parametry PID
-    void drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange);          // Rysuje osie i skale na wykresie
+    void initSimulation();
+    void updateSignalParams();
+    void updateARXParams();
+    void updatePIDParams();
+    void drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange);
 };
