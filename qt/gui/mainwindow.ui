@@ -313,7 +313,7 @@
      <rect>
       <x>1010</x>
       <y>750</y>
-      <width>72</width>
+      <width>111</width>
       <height>24</height>
      </rect>
     </property>
@@ -323,7 +323,7 @@
      <rect>
       <x>1010</x>
       <y>780</y>
-      <width>108</width>
+      <width>111</width>
       <height>24</height>
      </rect>
     </property>
@@ -348,13 +348,21 @@
          <string>Wejście</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="zadaneLabel"/>
+       <widget class="QLineEdit" name="zadaneLabel">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
        <widget class="QLabel" name="label_14">
         <property name="text">
          <string>Wyjście</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="wyjscieLabel"/>
+       <widget class="QLineEdit" name="wyjscieLabel">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
        <widget class="QPushButton" name="aktualizujButton">
         <property name="text">
          <string>AKTUALIZUJ</string>

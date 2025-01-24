@@ -75,7 +75,6 @@ void MainWindow::setupPlots()
     sterowaniePlot->addGraph();
     sterowaniePlot->addGraph();
     sterowaniePlot->addGraph();
-
     sterowaniePlot->graph(0)->setPen(QPen(Qt::red));
     sterowaniePlot->graph(1)->setPen(QPen(Qt::blue));
     sterowaniePlot->graph(2)->setPen(QPen(Qt::green));
@@ -83,6 +82,12 @@ void MainWindow::setupPlots()
     uchybPlot->addGraph();
     uchybPlot->graph(0)->setPen(QPen(Qt::green));
 
+    zadanaPlot->plotLayout()->insertRow(0); // Dodajemy nowy wiersz na górze
+    zadanaPlot->plotLayout()->addElement(0, 0, new QCPTextElement(zadanaPlot, "Wartość zadana", QFont("Arial", 12, QFont::Bold)));
+    sterowaniePlot->plotLayout()->insertRow(0); // Dodajemy nowy wiersz na górze
+    sterowaniePlot->plotLayout()->addElement(0, 0, new QCPTextElement(sterowaniePlot, "PID", QFont("Arial", 12, QFont::Bold)));
+    uchybPlot->plotLayout()->insertRow(0); // Dodajemy nowy wiersz na górze
+    uchybPlot->plotLayout()->addElement(0, 0, new QCPTextElement(uchybPlot, "Uchyb", QFont("Arial", 12, QFont::Bold)));
     zadanaPlot->addGraph();
     zadanaPlot->addGraph();
     zadanaPlot->graph(0)->setPen(QPen(Qt::red));
@@ -138,9 +143,10 @@ void MainWindow::stopSimulation() {
 }
 
 void MainWindow::resetSimulation() {
-    initSimulation();
+ //   initSimulation();
     ui->zadaneLabel->setText("0.00");
     ui->wyjscieLabel->setText("0.00");
+
 }
 
 void MainWindow::updateAllParams() {
@@ -220,8 +226,9 @@ void MainWindow::updateSimulation() {
 
 
         if (m_time > 0) {
-            if(setpoint > m_yZ || measured > m_yZ)
+       /*     if(setpoint > m_yZ || measured > m_yZ)
             {
+//Brakuje skalowania w dół
                 m_yZ+=1;
             }
             if(pComponent > m_yPID || iComponent > m_yPID || dComponent > m_yPID)
@@ -231,7 +238,7 @@ void MainWindow::updateSimulation() {
             if(setpoint > m_yZ)
             {
                 m_yZ+=1;
-            }
+            }*/
             zadanaPlot->graph(0)->addData(m_time-1,setpoint);
             zadanaPlot->graph(1)->addData(m_time-1,measured);
             sterowaniePlot->graph(0)->addData(m_time-1,pComponent);
@@ -241,6 +248,10 @@ void MainWindow::updateSimulation() {
             zadanaPlot->xAxis->setRange(m_x-1, m_x);
             sterowaniePlot->xAxis->setRange(m_x-1, m_x);
             uchybPlot->xAxis->setRange(m_x-1, m_x);
+            //Wstępnie zostawiam rescale Axes, musimy przemyśleć czy wolimy moje skalowanie czy przy użyciu tego
+            sterowaniePlot->rescaleAxes();
+            zadanaPlot->rescaleAxes();
+            uchybPlot->rescaleAxes();
             zadanaPlot->replot();
             sterowaniePlot->replot();
             uchybPlot->replot();
