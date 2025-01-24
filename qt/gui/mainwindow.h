@@ -32,7 +32,16 @@ private:
 
     QTimer *m_timer;
 
+    QCustomPlot * sterowaniePlot;
+    QCustomPlot * uchybPlot;
+    QCustomPlot * zadanaPlot;
 
+    double m_x = 1;
+    double m_yZ = 3;
+    double m_yPID = 1;
+    double m_yU = 1;
+
+    void setupPlots();
     int m_time;
     double m_prevSetpoint;
     double m_prevOutput;

@@ -9,7 +9,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
-
+    sterowaniePlot = ui->sterowanie;
+    uchybPlot = ui->uchyb;
+    zadanaPlot = ui->zadana;
     ui->sygnalcomboBox->addItem("Skok");
     ui->sygnalcomboBox->addItem("Sinusoida");
     ui->sygnalcomboBox->addItem("Prostokątny");
@@ -46,8 +48,61 @@ void MainWindow::initSimulation() {
     m_time = 0;
     m_prevSetpoint = 0.0;
     m_prevOutput = 0.0;
+    setupPlots();
 
+}
+void MainWindow::setupPlots()
+{
+    // Konfiguracja osi i stylu dla każdego z wykresów
+    // Sterowanie
+    sterowaniePlot->xAxis->setLabel("t [s]");
+    sterowaniePlot->yAxis->setLabel("y");
+    sterowaniePlot->xAxis->setRange(m_x-1, m_x); // Zakres na osi X
+    sterowaniePlot->yAxis->setRange(m_yPID-2, m_yPID); // Zakres na osi Y
 
+    // Uchyb
+    uchybPlot->xAxis->setLabel("t [s]");
+    uchybPlot->yAxis->setLabel("y");
+    uchybPlot->xAxis->setRange(m_x-1, m_x);
+    uchybPlot->yAxis->setRange(m_yU-2, m_yU);
+
+    // Zadana
+    zadanaPlot->xAxis->setLabel("t [s]]");
+    zadanaPlot->yAxis->setLabel("y");
+    zadanaPlot->xAxis->setRange(m_x-1, m_x);
+    zadanaPlot->yAxis->setRange(m_yZ-6, m_yZ);
+    // Dodanie danych do każdego wykresu
+    sterowaniePlot->addGraph();
+    sterowaniePlot->addGraph();
+    sterowaniePlot->addGraph();
+
+    sterowaniePlot->graph(0)->setPen(QPen(Qt::red));
+    sterowaniePlot->graph(1)->setPen(QPen(Qt::blue));
+    sterowaniePlot->graph(2)->setPen(QPen(Qt::green));
+
+    uchybPlot->addGraph();
+    uchybPlot->graph(0)->setPen(QPen(Qt::green));
+
+    zadanaPlot->addGraph();
+    zadanaPlot->addGraph();
+    zadanaPlot->graph(0)->setPen(QPen(Qt::red));
+    zadanaPlot->graph(1)->setPen(QPen(Qt::blue));
+    // nazwy
+    sterowaniePlot->legend->setVisible(true);
+    uchybPlot->legend->setVisible(true);
+    zadanaPlot->legend->setVisible(true);
+    uchybPlot->graph(0)->setName("Uchyb");
+
+    zadanaPlot->graph(0)->setName("Wyjscie");
+    zadanaPlot->graph(1)->setName("Zmierzona");
+
+    sterowaniePlot->graph(0)->setName("Składowa P");
+    sterowaniePlot->graph(1)->setName("Składowa I");
+    sterowaniePlot->graph(2)->setName("Składowa D");
+    //reploty
+    sterowaniePlot->replot();
+    uchybPlot->replot();
+    zadanaPlot->replot();
 }
 
 void MainWindow::startSimulation() {
@@ -75,6 +130,7 @@ void MainWindow::startSimulation() {
     } catch (const std::exception& ex) {
         QMessageBox::critical(this, "Błąd", ex.what());
     }
+
 }
 
 void MainWindow::stopSimulation() {
@@ -158,12 +214,39 @@ void MainWindow::updateSimulation() {
 
 
         if (m_time > 0) {
-
+            if(setpoint > m_yZ || measured > m_yZ)
+            {
+                m_yZ+=1;
+            }
+            if(pComponent > m_yPID || iComponent > m_yPID || dComponent > m_yPID)
+            {
+                m_yPID+=1;
+            }
+            if(setpoint > m_yZ)
+            {
+                m_yZ+=1;
+            }
+            zadanaPlot->graph(0)->addData(m_time-1,setpoint);
+            zadanaPlot->graph(1)->addData(m_time-1,measured);
+            sterowaniePlot->graph(0)->addData(m_time-1,pComponent);
+            sterowaniePlot->graph(1)->addData(m_time-1,iComponent);
+            sterowaniePlot->graph(2)->addData(m_time-1,dComponent);
+            uchybPlot->graph(0)->addData(m_time-1, error);
+            zadanaPlot->xAxis->setRange(m_x-1, m_x);
+            sterowaniePlot->xAxis->setRange(m_x-1, m_x);
+            uchybPlot->xAxis->setRange(m_x-1, m_x);
+            zadanaPlot->replot();
+            sterowaniePlot->replot();
+            uchybPlot->replot();
+            m_x+=0.2;
 
         }
         m_time++;
+        m_prevOutput = output;
+        m_prevSetpoint = setpoint;
     } catch (const std::exception& ex) {
         QMessageBox::critical(this, "Błąd symulacji", ex.what());
         stopSimulation();
     }
 }
+
