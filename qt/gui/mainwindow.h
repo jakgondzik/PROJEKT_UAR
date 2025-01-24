@@ -32,9 +32,7 @@ private:
 
     QTimer *m_timer;
 
-    QGraphicsScene *m_scene1;
-    QGraphicsScene *m_scene2;
-    QGraphicsScene *m_scene3;
+
     int m_time;
     double m_prevSetpoint;
     double m_prevOutput;
@@ -43,5 +41,4 @@ private:
     void updateSignalParams();
     void updateARXParams();
     void updatePIDParams();
-    void drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange);
 };

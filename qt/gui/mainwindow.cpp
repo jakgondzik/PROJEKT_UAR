@@ -5,13 +5,10 @@
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), m_timer(new QTimer(this)), m_scene1(new QGraphicsScene(this)), m_scene2(new QGraphicsScene(this)), m_scene3(new QGraphicsScene(this)), m_time(0), m_prevSetpoint(0.0), m_prevOutput(0.0) {
+    : QMainWindow(parent), ui(new Ui::MainWindow), m_timer(new QTimer(this)),  m_time(0), m_prevSetpoint(0.0), m_prevOutput(0.0) {
 
     ui->setupUi(this);
 
-    ui->graphicsView1->setScene(m_scene1);
-    ui->graphicsView2->setScene(m_scene2);
-    ui->graphicsView3->setScene(m_scene3);
 
     ui->sygnalcomboBox->addItem("Skok");
     ui->sygnalcomboBox->addItem("Sinusoida");
@@ -49,12 +46,8 @@ void MainWindow::initSimulation() {
     m_time = 0;
     m_prevSetpoint = 0.0;
     m_prevOutput = 0.0;
-    m_scene1->clear();
-    m_scene2->clear();
-    m_scene3->clear();
-    drawAxes(m_scene1, 600, 50);
-    drawAxes(m_scene2, 600, 50);
-    drawAxes(m_scene3, 600, 50);
+
+
 }
 
 void MainWindow::startSimulation() {
@@ -140,19 +133,7 @@ void MainWindow::updateAllParams() {
     }
 }
 
-void MainWindow::drawAxes(QGraphicsScene* scene, int xAxisLength, int yAxisRange) {
-    scene->addLine(0, 0, xAxisLength, 0, QPen(Qt::black));
-    for (int i = 0; i <= xAxisLength; i += 100) {
-        QGraphicsTextItem* label = scene->addText(QString::number(i/10.0));
-        label->setPos(i, 5);
-    }
 
-    scene->addLine(0, -yAxisRange, 0, yAxisRange, QPen(Qt::black));
-    for (int i = -yAxisRange; i <= yAxisRange; i += 10) {
-        QGraphicsTextItem* label = scene->addText(QString::number(i / 5.0));
-        label->setPos(-25, -i);
-    }
-}
 
 void MainWindow::updateSimulation() {
     try {
@@ -174,37 +155,12 @@ void MainWindow::updateSimulation() {
         ui->zadaneLabel->setText(QString::number(setpoint, 'f', 2));
         ui->wyjscieLabel->setText(QString::number(output, 'f', 2));
 
-        int windowWidth = 600;
-        int xStart = std::max(0, m_time - windowWidth);
-        m_scene1->setSceneRect(xStart, -100, windowWidth, 200);
-        m_scene2->setSceneRect(xStart, -100, windowWidth, 200);
-        m_scene3->setSceneRect(xStart, -100, windowWidth, 200);
 
-
-        double scaledSetpoint = setpoint * 5;
-        double scaledOutput = output * 5;
-        double scaledError = error * 5;
-        double scaledP = pComponent * 5;
-        double scaledI = iComponent * 5;
-        double scaledD = dComponent * 5;
-        double scaledControlSignal = controlSignal * 5;
 
         if (m_time > 0) {
 
-            m_scene1->addLine(m_time - 1, -m_prevSetpoint * 5, m_time, -scaledSetpoint, QPen(Qt::blue));
-            m_scene1->addLine(m_time - 1, -m_prevOutput * 5, m_time, -scaledOutput, QPen(Qt::red));
 
-
-            m_scene2->addLine(m_time - 1, 0, m_time, -scaledError, QPen(Qt::green));
-
-            m_scene3->addLine(m_time - 1, 0, m_time, -scaledControlSignal, QPen(Qt::yellow));
-            m_scene3->addLine(m_time - 1, 0, m_time, -scaledP, QPen(Qt::cyan));
-            m_scene3->addLine(m_time - 1, 0, m_time, -scaledI, QPen(Qt::magenta));
-            m_scene3->addLine(m_time - 1, 0, m_time, -scaledD, QPen(Qt::darkRed));
         }
-
-        m_prevSetpoint = setpoint;
-        m_prevOutput = output;
         m_time++;
     } catch (const std::exception& ex) {
         QMessageBox::critical(this, "Błąd symulacji", ex.what());

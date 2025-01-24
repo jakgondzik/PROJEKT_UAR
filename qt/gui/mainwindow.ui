@@ -32,26 +32,6 @@
    <string>UAR</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="graphicsView1">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>10</y>
-      <width>1000</width>
-      <height>180</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView2">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>190</y>
-      <width>1000</width>
-      <height>180</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -240,16 +220,6 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="wyjscieLabel"/>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView3">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>370</y>
-      <width>1000</width>
-      <height>180</height>
-     </rect>
-    </property>
    </widget>
    <widget class="QLabel" name="label_15">
     <property name="geometry">
