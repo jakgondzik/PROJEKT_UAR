@@ -115,6 +115,7 @@ void WartoscZadana::ustawprostokatny(double amplituda, double okres, double cykl
 }
 
 double WartoscZadana::generuj() {
+
     double wartosc = 0.0;
     switch (m_typsygnalu) {
     case skok:
