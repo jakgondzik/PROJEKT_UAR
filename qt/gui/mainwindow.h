@@ -35,7 +35,7 @@ private:
     QCustomPlot * sterowaniePlot;
     QCustomPlot * uchybPlot;
     QCustomPlot * zadanaPlot;
-
+    QMessageBox msg;
     double m_x = 1;
     double m_yZ = 3;
     double m_yPID = 1;

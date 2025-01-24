@@ -93,7 +93,7 @@ void MainWindow::setupPlots()
     zadanaPlot->legend->setVisible(true);
     uchybPlot->graph(0)->setName("Uchyb");
 
-    zadanaPlot->graph(0)->setName("Wyjscie");
+    zadanaPlot->graph(0)->setName("Wyjście");
     zadanaPlot->graph(1)->setName("Zmierzona");
 
     sterowaniePlot->graph(0)->setName("Składowa P");
@@ -144,6 +144,12 @@ void MainWindow::resetSimulation() {
 }
 
 void MainWindow::updateAllParams() {
+    if(m_time == 0)
+    {
+        msg.setText("Najpierw zacznij symulacje!");
+        msg.exec();
+        return;
+    }
     try {
         QStringList a_values = ui->vecaLabel->text().split(",");
         QStringList b_values = ui->vecbLabel->text().split(",");
