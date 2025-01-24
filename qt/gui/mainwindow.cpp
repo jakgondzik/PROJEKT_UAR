@@ -146,7 +146,7 @@ void MainWindow::resetSimulation() {
  //   initSimulation();
     ui->zadaneLabel->setText("0.00");
     ui->wyjscieLabel->setText("0.00");
-
+    //FUNKCJA RESET GRAPHS ALE NIE MIAŁEM JUŻ CZASU
 }
 
 void MainWindow::updateAllParams() {
