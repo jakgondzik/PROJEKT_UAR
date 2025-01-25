@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+ #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QGraphicsTextItem>
@@ -266,4 +266,41 @@ void MainWindow::updateSimulation() {
         stopSimulation();
     }
 }
-
+bool MainWindow::isAllSet()
+{
+    QString error = "";\
+    bool isset = true;
+    if(ui->kpLabel->text() == "")
+    {
+        error+= "kp;";
+        isset = false;
+    }
+    if(ui->tdLabel->text() == "")
+    {
+        error+= "td;";
+        isset = false;
+    }
+    if(ui->tiLabel->text() == "")
+    {
+        error+= "ti;";
+        isset = false;
+    }
+    if(ui->vecaLabel->text() == "")
+    {
+        error+= "Współczynnik A;";
+        isset = false;
+    }
+    if(ui->vecbLabel->text() == "")
+    {
+        error+= "Współczynnik B;";
+        isset = false;
+    }
+    if(ui->delayLabel->text() == "")
+    {
+        error+= "delay;";
+        isset = false;
+    }
+    msg.setText("Nie ustawiłeś współczynników: " + error + " symulacja wstrzymana.");
+    msg.exec();
+    return isset;
+}

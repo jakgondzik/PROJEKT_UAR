@@ -45,7 +45,7 @@ private:
     int m_time;
     double m_prevSetpoint;
     double m_prevOutput;
-
+    bool isAllSet();
     void initSimulation();
     void updateSignalParams();
     void updateARXParams();
