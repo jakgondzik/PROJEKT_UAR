@@ -28,7 +28,6 @@ private:
     Ui::MainWindow *ui;
 
     std::unique_ptr<Symulacja> m_symulacja;
-    std::unique_ptr<WartoscZadana> m_wartoscZadana;
 
     QTimer *m_timer;
 
@@ -48,7 +47,7 @@ private:
     double m_prevOutput;
     bool isAllSet();
     void initSimulation();
-    void updateSignalParams();
-    void updateARXParams();
-    void updatePIDParams();
+    auto updateSignalParams();
+    auto updateARXParams();
+    auto updatePIDParams();
 };
