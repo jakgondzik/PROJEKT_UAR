@@ -53,18 +53,16 @@ void MainWindow::initSimulation() {
 }
 void MainWindow::setupPlots()
 {
-    // Konfiguracja osi i stylu dla każdego z wykresów
-    // Sterowanie
     sterowaniePlot->xAxis->setLabel("t [s]");
     sterowaniePlot->yAxis->setLabel("y");
-    sterowaniePlot->xAxis->setRange(m_x-1, m_x); // Zakres na osi X
-    sterowaniePlot->yAxis->setRange(m_yPID-2, m_yPID); // Zakres na osi Y
+    //sterowaniePlot->xAxis->setRange(m_x-1, m_x);
+  //  sterowaniePlot->yAxis->setRange(m_yPID-2, m_yPID);
 
     // Uchyb
     uchybPlot->xAxis->setLabel("t [s]");
     uchybPlot->yAxis->setLabel("y");
-    uchybPlot->xAxis->setRange(m_x-1, m_x);
-    uchybPlot->yAxis->setRange(m_yU-2, m_yU);
+  //  uchybPlot->xAxis->setRange(m_x-1, m_x);
+   // uchybPlot->yAxis->setRange(m_yU-2, m_yU);
 
     // Zadana
     zadanaPlot->xAxis->setLabel("t [s]]");
@@ -82,17 +80,17 @@ void MainWindow::setupPlots()
     uchybPlot->addGraph();
     uchybPlot->graph(0)->setPen(QPen(Qt::green));
 
-    zadanaPlot->plotLayout()->insertRow(0); // Dodajemy nowy wiersz na górze
+    zadanaPlot->plotLayout()->insertRow(0);
     zadanaPlot->plotLayout()->addElement(0, 0, new QCPTextElement(zadanaPlot, "Wartość zadana", QFont("Arial", 12, QFont::Bold)));
-    sterowaniePlot->plotLayout()->insertRow(0); // Dodajemy nowy wiersz na górze
+    sterowaniePlot->plotLayout()->insertRow(0);
     sterowaniePlot->plotLayout()->addElement(0, 0, new QCPTextElement(sterowaniePlot, "PID", QFont("Arial", 12, QFont::Bold)));
-    uchybPlot->plotLayout()->insertRow(0); // Dodajemy nowy wiersz na górze
+    uchybPlot->plotLayout()->insertRow(0);
     uchybPlot->plotLayout()->addElement(0, 0, new QCPTextElement(uchybPlot, "Uchyb", QFont("Arial", 12, QFont::Bold)));
     zadanaPlot->addGraph();
     zadanaPlot->addGraph();
     zadanaPlot->graph(0)->setPen(QPen(Qt::red));
     zadanaPlot->graph(1)->setPen(QPen(Qt::blue));
-    // nazwy
+
     sterowaniePlot->legend->setVisible(true);
     uchybPlot->legend->setVisible(true);
     zadanaPlot->legend->setVisible(true);
@@ -105,13 +103,8 @@ void MainWindow::setupPlots()
     sterowaniePlot->graph(1)->setName("Składowa I");
     sterowaniePlot->graph(2)->setName("Składowa D");
 
-    sterowaniePlot->setInteraction(QCP::iRangeZoom, true);
-    sterowaniePlot->setInteraction(QCP::iRangeDrag, true);
-    zadanaPlot->setInteraction(QCP::iRangeZoom, true);
-    zadanaPlot->setInteraction(QCP::iRangeDrag, true);
-    uchybPlot->setInteraction(QCP::iRangeZoom, true);
-    uchybPlot->setInteraction(QCP::iRangeDrag, true);
-    //reploty
+    zoom(true);
+
     sterowaniePlot->replot();
     uchybPlot->replot();
     zadanaPlot->replot();
@@ -137,7 +130,7 @@ void MainWindow::startSimulation() {
             ui->tiLabel->setText(QString::number(pid->getTi()));
             ui->tdLabel->setText(QString::number(pid->getTd()));
         }
-
+        zoom(false);
         m_timer->start(100);
     } catch (const std::exception& ex) {
         QMessageBox::critical(this, "Błąd", ex.what());
@@ -147,6 +140,8 @@ void MainWindow::startSimulation() {
 
 void MainWindow::stopSimulation() {
     m_timer->stop();
+    zoom(true);
+
 }
 
 void MainWindow::resetSimulation() {
@@ -310,4 +305,13 @@ bool MainWindow::isAllSet()
     msg.setText("Nie ustawiłeś współczynników: " + error + " symulacja wstrzymana.");
     msg.exec();
     return isset;
+}
+void MainWindow::zoom(bool stan)
+{
+    sterowaniePlot->setInteraction(QCP::iRangeZoom, stan);
+    sterowaniePlot->setInteraction(QCP::iRangeDrag, stan);
+    zadanaPlot->setInteraction(QCP::iRangeZoom, stan);
+    zadanaPlot->setInteraction(QCP::iRangeDrag, stan);
+    uchybPlot->setInteraction(QCP::iRangeZoom, stan);
+    uchybPlot->setInteraction(QCP::iRangeDrag, stan);
 }

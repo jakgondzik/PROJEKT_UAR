@@ -40,7 +40,7 @@ private:
     double m_yZ = 3;
     double m_yPID = 1;
     double m_yU = 1;
-
+    void zoom(bool);
     void setupPlots();
     int m_time;
     double m_prevSetpoint;
