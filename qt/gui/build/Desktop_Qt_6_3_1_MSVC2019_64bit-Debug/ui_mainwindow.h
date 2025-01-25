@@ -12,15 +12,15 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QGraphicsView>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -28,253 +28,185 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QGraphicsView *graphicsView1;
-    QGraphicsView *graphicsView2;
-    QWidget *layoutWidget;
-    QGridLayout *gridLayout_2;
-    QGridLayout *gridLayout;
+    QCustomPlot *zadana;
+    QCustomPlot *uchyb;
+    QLineEdit *amplitudaLabel;
     QLabel *label;
-    QLineEdit *kpLabel;
+    QLabel *label_9;
     QLabel *label_3;
-    QLineEdit *tdLabel;
-    QLabel *label_5;
-    QLineEdit *vecbLabel;
-    QLabel *label_7;
-    QLineEdit *zakloceniaLabel;
-    QLabel *label_10;
+    QLineEdit *delayLabel;
     QLineEdit *okresLabel;
+    QLineEdit *zakloceniaLabel;
+    QLineEdit *cyklLabel;
+    QLabel *label_4;
+    QLabel *label_7;
     QLabel *label_8;
-    QComboBox *sygnalcomboBox;
-    QPushButton *aktualizujButton;
-    QPushButton *startButton;
-    QPushButton *stopButton;
+    QLineEdit *vecbLabel;
+    QLabel *label_11;
+    QLabel *label_6;
+    QLabel *label_5;
+    QLineEdit *tdLabel;
     QLabel *label_2;
     QLineEdit *tiLabel;
-    QLabel *label_4;
+    QLineEdit *kpLabel;
     QLineEdit *vecaLabel;
-    QLabel *label_6;
-    QLineEdit *delayLabel;
-    QLabel *label_9;
-    QLineEdit *amplitudaLabel;
-    QLabel *label_11;
-    QLineEdit *cyklLabel;
     QLabel *label_12;
+    QLabel *label_10;
+    QComboBox *sygnalcomboBox;
     QLineEdit *aktywacjaLabel;
-    QPushButton *resetButton;
+    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout;
     QSplitter *splitter;
     QLabel *label_13;
     QLineEdit *zadaneLabel;
     QLabel *label_14;
     QLineEdit *wyjscieLabel;
-    QGraphicsView *graphicsView3;
-    QLabel *label_15;
-    QLabel *label_16;
-    QLabel *label_17;
-    QLabel *label_18;
+    QPushButton *aktualizujButton;
+    QPushButton *startButton;
+    QPushButton *resetButton;
+    QPushButton *stopButton;
+    QCustomPlot *sterowanie;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1386, 636);
+        MainWindow->resize(1386, 836);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
-        MainWindow->setMinimumSize(QSize(1386, 636));
-        MainWindow->setMaximumSize(QSize(1386, 636));
+        MainWindow->setMinimumSize(QSize(1386, 836));
+        MainWindow->setMaximumSize(QSize(1386, 836));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        graphicsView1 = new QGraphicsView(centralwidget);
-        graphicsView1->setObjectName(QString::fromUtf8("graphicsView1"));
-        graphicsView1->setGeometry(QRect(110, 10, 1000, 180));
-        graphicsView2 = new QGraphicsView(centralwidget);
-        graphicsView2->setObjectName(QString::fromUtf8("graphicsView2"));
-        graphicsView2->setGeometry(QRect(110, 190, 1000, 180));
+        zadana = new QCustomPlot(centralwidget);
+        zadana->setObjectName(QString::fromUtf8("zadana"));
+        zadana->setGeometry(QRect(30, 30, 781, 701));
+        uchyb = new QCustomPlot(centralwidget);
+        uchyb->setObjectName(QString::fromUtf8("uchyb"));
+        uchyb->setGeometry(QRect(810, 380, 451, 351));
+        amplitudaLabel = new QLineEdit(centralwidget);
+        amplitudaLabel->setObjectName(QString::fromUtf8("amplitudaLabel"));
+        amplitudaLabel->setGeometry(QRect(668, 780, 108, 24));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(195, 750, 16, 16));
+        label_9 = new QLabel(centralwidget);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setGeometry(QRect(607, 780, 54, 16));
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(328, 750, 16, 16));
+        delayLabel = new QLineEdit(centralwidget);
+        delayLabel->setObjectName(QString::fromUtf8("delayLabel"));
+        delayLabel->setGeometry(QRect(493, 780, 108, 24));
+        okresLabel = new QLineEdit(centralwidget);
+        okresLabel->setObjectName(QString::fromUtf8("okresLabel"));
+        okresLabel->setGeometry(QRect(816, 750, 108, 24));
+        zakloceniaLabel = new QLineEdit(centralwidget);
+        zakloceniaLabel->setObjectName(QString::fromUtf8("zakloceniaLabel"));
+        zakloceniaLabel->setGeometry(QRect(668, 750, 108, 24));
+        cyklLabel = new QLineEdit(centralwidget);
+        cyklLabel->setObjectName(QString::fromUtf8("cyklLabel"));
+        cyklLabel->setGeometry(QRect(816, 780, 108, 24));
+        label_4 = new QLabel(centralwidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(328, 780, 16, 16));
+        label_7 = new QLabel(centralwidget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setGeometry(QRect(607, 750, 55, 16));
+        label_8 = new QLabel(centralwidget);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setGeometry(QRect(930, 750, 61, 16));
+        vecbLabel = new QLineEdit(centralwidget);
+        vecbLabel->setObjectName(QString::fromUtf8("vecbLabel"));
+        vecbLabel->setGeometry(QRect(493, 750, 108, 24));
+        label_11 = new QLabel(centralwidget);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+        label_11->setGeometry(QRect(782, 780, 21, 16));
+        label_6 = new QLabel(centralwidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setGeometry(QRect(459, 780, 28, 16));
+        label_5 = new QLabel(centralwidget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(459, 750, 16, 16));
+        tdLabel = new QLineEdit(centralwidget);
+        tdLabel->setObjectName(QString::fromUtf8("tdLabel"));
+        tdLabel->setGeometry(QRect(345, 750, 108, 24));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(195, 780, 16, 16));
+        tiLabel = new QLineEdit(centralwidget);
+        tiLabel->setObjectName(QString::fromUtf8("tiLabel"));
+        tiLabel->setGeometry(QRect(214, 780, 108, 24));
+        kpLabel = new QLineEdit(centralwidget);
+        kpLabel->setObjectName(QString::fromUtf8("kpLabel"));
+        kpLabel->setGeometry(QRect(214, 750, 108, 24));
+        vecaLabel = new QLineEdit(centralwidget);
+        vecaLabel->setObjectName(QString::fromUtf8("vecaLabel"));
+        vecaLabel->setGeometry(QRect(345, 780, 108, 24));
+        label_12 = new QLabel(centralwidget);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+        label_12->setGeometry(QRect(930, 780, 74, 16));
+        label_10 = new QLabel(centralwidget);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setGeometry(QRect(782, 750, 28, 16));
+        sygnalcomboBox = new QComboBox(centralwidget);
+        sygnalcomboBox->setObjectName(QString::fromUtf8("sygnalcomboBox"));
+        sygnalcomboBox->setGeometry(QRect(1010, 750, 111, 24));
+        aktywacjaLabel = new QLineEdit(centralwidget);
+        aktywacjaLabel->setObjectName(QString::fromUtf8("aktywacjaLabel"));
+        aktywacjaLabel->setGeometry(QRect(1010, 780, 111, 24));
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(40, 560, 1271, 58));
-        gridLayout_2 = new QGridLayout(layoutWidget);
-        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        label = new QLabel(layoutWidget);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        gridLayout->addWidget(label, 0, 0, 1, 1);
-
-        kpLabel = new QLineEdit(layoutWidget);
-        kpLabel->setObjectName(QString::fromUtf8("kpLabel"));
-
-        gridLayout->addWidget(kpLabel, 0, 1, 1, 1);
-
-        label_3 = new QLabel(layoutWidget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-
-        gridLayout->addWidget(label_3, 0, 2, 1, 1);
-
-        tdLabel = new QLineEdit(layoutWidget);
-        tdLabel->setObjectName(QString::fromUtf8("tdLabel"));
-
-        gridLayout->addWidget(tdLabel, 0, 3, 1, 1);
-
-        label_5 = new QLabel(layoutWidget);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-
-        gridLayout->addWidget(label_5, 0, 4, 1, 1);
-
-        vecbLabel = new QLineEdit(layoutWidget);
-        vecbLabel->setObjectName(QString::fromUtf8("vecbLabel"));
-
-        gridLayout->addWidget(vecbLabel, 0, 5, 1, 1);
-
-        label_7 = new QLabel(layoutWidget);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-
-        gridLayout->addWidget(label_7, 0, 6, 1, 1);
-
-        zakloceniaLabel = new QLineEdit(layoutWidget);
-        zakloceniaLabel->setObjectName(QString::fromUtf8("zakloceniaLabel"));
-
-        gridLayout->addWidget(zakloceniaLabel, 0, 7, 1, 1);
-
-        label_10 = new QLabel(layoutWidget);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-
-        gridLayout->addWidget(label_10, 0, 8, 1, 1);
-
-        okresLabel = new QLineEdit(layoutWidget);
-        okresLabel->setObjectName(QString::fromUtf8("okresLabel"));
-
-        gridLayout->addWidget(okresLabel, 0, 9, 1, 1);
-
-        label_8 = new QLabel(layoutWidget);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-
-        gridLayout->addWidget(label_8, 0, 10, 1, 1);
-
-        sygnalcomboBox = new QComboBox(layoutWidget);
-        sygnalcomboBox->setObjectName(QString::fromUtf8("sygnalcomboBox"));
-
-        gridLayout->addWidget(sygnalcomboBox, 0, 11, 1, 1);
-
-        aktualizujButton = new QPushButton(layoutWidget);
-        aktualizujButton->setObjectName(QString::fromUtf8("aktualizujButton"));
-
-        gridLayout->addWidget(aktualizujButton, 0, 12, 2, 1);
-
-        startButton = new QPushButton(layoutWidget);
-        startButton->setObjectName(QString::fromUtf8("startButton"));
-
-        gridLayout->addWidget(startButton, 0, 13, 2, 1);
-
-        stopButton = new QPushButton(layoutWidget);
-        stopButton->setObjectName(QString::fromUtf8("stopButton"));
-
-        gridLayout->addWidget(stopButton, 0, 14, 2, 1);
-
-        label_2 = new QLabel(layoutWidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-
-        gridLayout->addWidget(label_2, 1, 0, 1, 1);
-
-        tiLabel = new QLineEdit(layoutWidget);
-        tiLabel->setObjectName(QString::fromUtf8("tiLabel"));
-
-        gridLayout->addWidget(tiLabel, 1, 1, 1, 1);
-
-        label_4 = new QLabel(layoutWidget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-
-        gridLayout->addWidget(label_4, 1, 2, 1, 1);
-
-        vecaLabel = new QLineEdit(layoutWidget);
-        vecaLabel->setObjectName(QString::fromUtf8("vecaLabel"));
-
-        gridLayout->addWidget(vecaLabel, 1, 3, 1, 1);
-
-        label_6 = new QLabel(layoutWidget);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-
-        gridLayout->addWidget(label_6, 1, 4, 1, 1);
-
-        delayLabel = new QLineEdit(layoutWidget);
-        delayLabel->setObjectName(QString::fromUtf8("delayLabel"));
-
-        gridLayout->addWidget(delayLabel, 1, 5, 1, 1);
-
-        label_9 = new QLabel(layoutWidget);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
-
-        gridLayout->addWidget(label_9, 1, 6, 1, 1);
-
-        amplitudaLabel = new QLineEdit(layoutWidget);
-        amplitudaLabel->setObjectName(QString::fromUtf8("amplitudaLabel"));
-
-        gridLayout->addWidget(amplitudaLabel, 1, 7, 1, 1);
-
-        label_11 = new QLabel(layoutWidget);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
-
-        gridLayout->addWidget(label_11, 1, 8, 1, 1);
-
-        cyklLabel = new QLineEdit(layoutWidget);
-        cyklLabel->setObjectName(QString::fromUtf8("cyklLabel"));
-
-        gridLayout->addWidget(cyklLabel, 1, 9, 1, 1);
-
-        label_12 = new QLabel(layoutWidget);
-        label_12->setObjectName(QString::fromUtf8("label_12"));
-
-        gridLayout->addWidget(label_12, 1, 10, 1, 1);
-
-        aktywacjaLabel = new QLineEdit(layoutWidget);
-        aktywacjaLabel->setObjectName(QString::fromUtf8("aktywacjaLabel"));
-
-        gridLayout->addWidget(aktywacjaLabel, 1, 11, 1, 1);
-
-
-        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
-
-        resetButton = new QPushButton(layoutWidget);
-        resetButton->setObjectName(QString::fromUtf8("resetButton"));
-
-        gridLayout_2->addWidget(resetButton, 0, 1, 1, 1);
-
-        splitter = new QSplitter(centralwidget);
+        layoutWidget->setGeometry(QRect(1270, 270, 110, 214));
+        verticalLayout = new QVBoxLayout(layoutWidget);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        splitter = new QSplitter(layoutWidget);
         splitter->setObjectName(QString::fromUtf8("splitter"));
-        splitter->setGeometry(QRect(1160, 140, 161, 171));
         splitter->setOrientation(Qt::Vertical);
         label_13 = new QLabel(splitter);
         label_13->setObjectName(QString::fromUtf8("label_13"));
         splitter->addWidget(label_13);
         zadaneLabel = new QLineEdit(splitter);
         zadaneLabel->setObjectName(QString::fromUtf8("zadaneLabel"));
+        zadaneLabel->setReadOnly(true);
         splitter->addWidget(zadaneLabel);
         label_14 = new QLabel(splitter);
         label_14->setObjectName(QString::fromUtf8("label_14"));
         splitter->addWidget(label_14);
         wyjscieLabel = new QLineEdit(splitter);
         wyjscieLabel->setObjectName(QString::fromUtf8("wyjscieLabel"));
+        wyjscieLabel->setReadOnly(true);
         splitter->addWidget(wyjscieLabel);
-        graphicsView3 = new QGraphicsView(centralwidget);
-        graphicsView3->setObjectName(QString::fromUtf8("graphicsView3"));
-        graphicsView3->setGeometry(QRect(110, 370, 1000, 180));
-        label_15 = new QLabel(centralwidget);
-        label_15->setObjectName(QString::fromUtf8("label_15"));
-        label_15->setGeometry(QRect(10, 60, 91, 16));
-        label_16 = new QLabel(centralwidget);
-        label_16->setObjectName(QString::fromUtf8("label_16"));
-        label_16->setGeometry(QRect(10, 80, 101, 16));
-        label_17 = new QLabel(centralwidget);
-        label_17->setObjectName(QString::fromUtf8("label_17"));
-        label_17->setGeometry(QRect(40, 260, 51, 16));
-        label_18 = new QLabel(centralwidget);
-        label_18->setObjectName(QString::fromUtf8("label_18"));
-        label_18->setGeometry(QRect(30, 450, 61, 16));
+        aktualizujButton = new QPushButton(splitter);
+        aktualizujButton->setObjectName(QString::fromUtf8("aktualizujButton"));
+        splitter->addWidget(aktualizujButton);
+
+        verticalLayout->addWidget(splitter);
+
+        startButton = new QPushButton(layoutWidget);
+        startButton->setObjectName(QString::fromUtf8("startButton"));
+
+        verticalLayout->addWidget(startButton);
+
+        resetButton = new QPushButton(layoutWidget);
+        resetButton->setObjectName(QString::fromUtf8("resetButton"));
+
+        verticalLayout->addWidget(resetButton);
+
+        stopButton = new QPushButton(layoutWidget);
+        stopButton->setObjectName(QString::fromUtf8("stopButton"));
+
+        verticalLayout->addWidget(stopButton);
+
+        sterowanie = new QCustomPlot(centralwidget);
+        sterowanie->setObjectName(QString::fromUtf8("sterowanie"));
+        sterowanie->setGeometry(QRect(810, 30, 451, 351));
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -289,27 +221,23 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "UAR", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "kp", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "td", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "B", nullptr));
-        label_7->setText(QCoreApplication::translate("MainWindow", "zaklocenia", nullptr));
-        label_10->setText(QCoreApplication::translate("MainWindow", "okres", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "typ sygnalu", nullptr));
-        aktualizujButton->setText(QCoreApplication::translate("MainWindow", "AKTUALIZUJ", nullptr));
-        startButton->setText(QCoreApplication::translate("MainWindow", "START", nullptr));
-        stopButton->setText(QCoreApplication::translate("MainWindow", "STOP", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "ti", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "A", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "delay", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "amplituda", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "td", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "A", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "zaklocenia", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "typ sygnalu", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "cykl", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "delay", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "B", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "ti", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "czas aktywacji", nullptr));
-        resetButton->setText(QCoreApplication::translate("MainWindow", "RESET", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "okres", nullptr));
         label_13->setText(QCoreApplication::translate("MainWindow", "Wej\305\233cie", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "Wyj\305\233cie", nullptr));
-        label_15->setText(QCoreApplication::translate("MainWindow", "Wartosc Zadana", nullptr));
-        label_16->setText(QCoreApplication::translate("MainWindow", "Wartosc zmierzona", nullptr));
-        label_17->setText(QCoreApplication::translate("MainWindow", "Uchyb", nullptr));
-        label_18->setText(QCoreApplication::translate("MainWindow", "Sterowanie", nullptr));
+        aktualizujButton->setText(QCoreApplication::translate("MainWindow", "AKTUALIZUJ", nullptr));
+        startButton->setText(QCoreApplication::translate("MainWindow", "START", nullptr));
+        resetButton->setText(QCoreApplication::translate("MainWindow", "RESET", nullptr));
+        stopButton->setText(QCoreApplication::translate("MainWindow", "STOP", nullptr));
     } // retranslateUi
 
 };
