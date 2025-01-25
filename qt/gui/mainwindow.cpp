@@ -104,6 +104,13 @@ void MainWindow::setupPlots()
     sterowaniePlot->graph(0)->setName("Składowa P");
     sterowaniePlot->graph(1)->setName("Składowa I");
     sterowaniePlot->graph(2)->setName("Składowa D");
+
+    sterowaniePlot->setInteraction(QCP::iRangeZoom, true);
+    sterowaniePlot->setInteraction(QCP::iRangeDrag, true);
+    zadanaPlot->setInteraction(QCP::iRangeZoom, true);
+    zadanaPlot->setInteraction(QCP::iRangeDrag, true);
+    uchybPlot->setInteraction(QCP::iRangeZoom, true);
+    uchybPlot->setInteraction(QCP::iRangeDrag, true);
     //reploty
     sterowaniePlot->replot();
     uchybPlot->replot();
@@ -146,7 +153,7 @@ void MainWindow::resetSimulation() {
  //   initSimulation();
     ui->zadaneLabel->setText("0.00");
     ui->wyjscieLabel->setText("0.00");
-    //FUNKCJA RESET GRAPHS ALE NIE MIAŁEM JUŻ CZASU
+
 }
 
 void MainWindow::updateAllParams() {
