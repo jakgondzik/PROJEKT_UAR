@@ -79,13 +79,15 @@ void MainWindow::setupPlots()
 
     uchybPlot->addGraph();
     uchybPlot->graph(0)->setPen(QPen(Qt::green));
-
+    if(!wasreseted)
+    {
     zadanaPlot->plotLayout()->insertRow(0);
     zadanaPlot->plotLayout()->addElement(0, 0, new QCPTextElement(zadanaPlot, "Wartość zadana", QFont("Arial", 12, QFont::Bold)));
     sterowaniePlot->plotLayout()->insertRow(0);
     sterowaniePlot->plotLayout()->addElement(0, 0, new QCPTextElement(sterowaniePlot, "PID", QFont("Arial", 12, QFont::Bold)));
     uchybPlot->plotLayout()->insertRow(0);
     uchybPlot->plotLayout()->addElement(0, 0, new QCPTextElement(uchybPlot, "Uchyb", QFont("Arial", 12, QFont::Bold)));
+    }
     zadanaPlot->addGraph();
     zadanaPlot->addGraph();
     zadanaPlot->graph(0)->setPen(QPen(Qt::red));
@@ -145,10 +147,14 @@ void MainWindow::stopSimulation() {
 }
 
 void MainWindow::resetSimulation() {
- //   initSimulation();
+
     ui->zadaneLabel->setText("0.00");
     ui->wyjscieLabel->setText("0.00");
-
+    sterowaniePlot->clearGraphs();
+    zadanaPlot->clearGraphs();
+    uchybPlot->clearGraphs();
+    wasreseted = true;
+    initSimulation();
 }
 
 void MainWindow::updateAllParams() {
