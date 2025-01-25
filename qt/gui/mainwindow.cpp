@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(m_timer, &QTimer::timeout, this, &MainWindow::updateSimulation);
 
-    initSimulation();
+
 }
 
 MainWindow::~MainWindow() {
@@ -44,7 +44,6 @@ void MainWindow::initSimulation() {
     m_wartoscZadana = std::make_unique<WartoscZadana>();
 
     m_symulacja = std::make_unique<Symulacja>(std::move(arx), std::move(pid), std::move(m_wartoscZadana));
-
     m_time = 0;
     m_prevSetpoint = 0.0;
     m_prevOutput = 0.0;
@@ -113,6 +112,11 @@ void MainWindow::setupPlots()
 }
 
 void MainWindow::startSimulation() {
+    if(m_time > 0)
+    {
+        return;
+    }
+initSimulation();
     try {
         if (!m_symulacja) {
             throw std::logic_error("Symulacja nie została poprawnie zainicjalizowana.");
@@ -253,9 +257,9 @@ void MainWindow::updateSimulation() {
             sterowaniePlot->graph(1)->addData(m_time-1,iComponent);
             sterowaniePlot->graph(2)->addData(m_time-1,dComponent);
             uchybPlot->graph(0)->addData(m_time-1, error);
-            zadanaPlot->xAxis->setRange(m_x-1, m_x);
+           /* zadanaPlot->xAxis->setRange(m_x-1, m_x);
             sterowaniePlot->xAxis->setRange(m_x-1, m_x);
-            uchybPlot->xAxis->setRange(m_x-1, m_x);
+            uchybPlot->xAxis->setRange(m_x-1, m_x);*/
             //Wstępnie zostawiam rescale Axes, musimy przemyśleć czy wolimy moje skalowanie czy przy użyciu tego
             sterowaniePlot->rescaleAxes();
             zadanaPlot->rescaleAxes();
