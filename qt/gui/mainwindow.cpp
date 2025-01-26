@@ -41,35 +41,111 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-auto MainWindow::updateARXParams()
+
+
+std::unique_ptr<ARX> MainWindow::updateARXParams()
 {
     QStringList a_values = ui->vecaLabel->text().split(",");
     QStringList b_values = ui->vecbLabel->text().split(",");
     std::vector<double> vec_a, vec_b;
-    for (const auto& val : a_values) vec_a.push_back(val.toDouble());
-    for (const auto& val : b_values) vec_b.push_back(val.toDouble());
 
-    int delay = ui->delayLabel->text().toInt();
-    double zaklocenia = ui->zakloceniaLabel->text().toDouble();
+    for (const auto& val : a_values) {
+        bool ok;
+        double number = val.toDouble(&ok);
+        if (ok) {
+            vec_a.push_back(number);
+        } else {
+            QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość w polu vecA: " + val);
+            return nullptr;
+        }
+    }
+    for (const auto& val : b_values) {
+        bool ok;
+        double number = val.toDouble(&ok);
+        if (ok) {
+            vec_b.push_back(number);
+        } else {
+            QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość w polu vecB: " + val);
+            return nullptr;
+        }
+    }
+
+    bool delayOk;
+    int delay = ui->delayLabel->text().toInt(&delayOk);
+    if (!delayOk) {
+        QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość opóźnienia (delay).");
+        return nullptr;
+    }
+
+
+    bool zakloceniaOk;
+    double zaklocenia = ui->zakloceniaLabel->text().toDouble(&zakloceniaOk);
+    if (!zakloceniaOk) {
+        QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość zakłócenia.");
+        return nullptr;
+    }
+
     auto arx = std::make_unique<ARX>(vec_a, vec_b, delay, zaklocenia);
     return arx;
 }
-auto MainWindow::updatePIDParams()
+
+
+std::unique_ptr<PID> MainWindow::updatePIDParams()
 {
-    double kp = ui->kpLabel->text().toDouble();
-    double ti = ui->tiLabel->text().toDouble();
-    double td = ui->tdLabel->text().toDouble();
-    auto pid = std::make_unique<PID>(kp, ti, td);
-    return pid;
+    bool kpOk, tiOk, tdOk;
+
+    double kp = ui->kpLabel->text().toDouble(&kpOk);
+    if (!kpOk) {
+        QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość Kp.");
+        return nullptr;
+    }
+
+    double ti = ui->tiLabel->text().toDouble(&tiOk);
+    if (!tiOk) {
+        QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość Ti.");
+        return nullptr;
+    }
+
+    double td = ui->tdLabel->text().toDouble(&tdOk);
+    if (!tdOk) {
+        QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość Td.");
+        return nullptr;
+    }
+
+    return std::make_unique<PID>(kp, ti, td);
 }
 
-auto MainWindow::updateSignalParams()
+
+std::unique_ptr<WartoscZadana> MainWindow::updateSignalParams()
 {
     auto wartoscZadana = std::make_unique<WartoscZadana>();
-    double amplitude = ui->amplitudaLabel->text().toDouble();
-    double period = ui->okresLabel->text().toDouble();
-    double dutyCycle = ui->cyklLabel->text().toDouble();
-    int activationTime = ui->aktywacjaLabel->text().toInt();
+
+    bool amplitudeOk, periodOk, dutyCycleOk, activationTimeOk;
+
+    double amplitude = ui->amplitudaLabel->text().toDouble(&amplitudeOk);
+    if (!amplitudeOk) {
+        QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość amplitudy.");
+        return nullptr;
+    }
+
+    double period = ui->okresLabel->text().toDouble(&periodOk);
+    if (!periodOk) {
+        QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość okresu.");
+        return nullptr;
+    }
+
+    double dutyCycle = ui->cyklLabel->text().toDouble(&dutyCycleOk);
+    if (!dutyCycleOk) {
+        QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość współczynnika wypełnienia (duty cycle).");
+        return nullptr;
+    }
+
+    int activationTime = ui->aktywacjaLabel->text().toInt(&activationTimeOk);
+    if (!activationTimeOk) {
+        QMessageBox::warning(this, "Błąd danych", "Nieprawidłowa wartość czasu aktywacji.");
+        return nullptr;
+    }
+
     TypSygnalu type = static_cast<TypSygnalu>(ui->sygnalcomboBox->currentIndex());
 
     switch (type) {
@@ -83,10 +159,13 @@ auto MainWindow::updateSignalParams()
         wartoscZadana->ustawprostokatny(amplitude, period, dutyCycle);
         break;
     default:
-        throw std::invalid_argument("Nieznany typ sygnału.");
+        QMessageBox::warning(this, "Błąd danych", "Nieznany typ sygnału.");
+        return nullptr;
     }
+
     return wartoscZadana;
 }
+
 
 void MainWindow::initSimulation() {
 
@@ -96,11 +175,17 @@ void MainWindow::initSimulation() {
 
     auto wartoscZadana = this->updateSignalParams();
 
+    if (arx==nullptr||pid==nullptr||wartoscZadana==nullptr)
+    {
+        m_symulacja = nullptr;
+    } else
+    {
     m_symulacja = std::make_unique<Symulacja>(std::move(arx), std::move(pid), std::move(wartoscZadana));
     m_time = 0;
     m_prevSetpoint = 0.0;
     m_prevOutput = 0.0;
     setupPlots();
+    }
 
 }
 void MainWindow::setupPlots()

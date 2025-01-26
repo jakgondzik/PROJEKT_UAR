@@ -47,7 +47,7 @@ private:
     double m_prevOutput;
     bool isAllSet();
     void initSimulation();
-    auto updateSignalParams();
-    auto updateARXParams();
-    auto updatePIDParams();
+    std::unique_ptr<WartoscZadana> updateSignalParams();
+    std::unique_ptr<ARX> updateARXParams();
+    std::unique_ptr<PID> updatePIDParams();
 };
