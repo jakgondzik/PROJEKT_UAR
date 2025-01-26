@@ -37,6 +37,9 @@ protected:
 
 public:
     PID(double p, double i, double d);
+    double obliczP(double cel, double zmierzone);
+    double obliczI();
+    double obliczD(double cel, double zmierzone);
     double oblicz(double cel, double zmierzone);
     void reset();
     void setParametry(double kp, double ti, double td);

@@ -257,8 +257,7 @@ void MainWindow::setupPlots()
 void MainWindow::startSimulation() {
     if(m_time > 0)
     {
-        m_timer->start(100);
-        elapsedTimer.start();
+        m_timer->start(this->ui->interwalSpinBox->value());
         return;
     }
 initSimulation();
@@ -268,7 +267,7 @@ initSimulation();
         }
 
         zoom(false);
-        m_timer->start(100);
+        m_timer->start(this->ui->interwalSpinBox->value());
     } catch (const std::exception& ex) {
         QMessageBox::critical(this, "Błąd", ex.what());
     }
@@ -311,9 +310,11 @@ void MainWindow::updateAllParams() {
 
         auto wartoscZadana = this->updateSignalParams();
 
+        if (!(arx==nullptr||pid==nullptr||wartoscZadana==nullptr))
+        {
         m_symulacja = std::make_unique<Symulacja>(std::move(arx), std::move(pid), std::move(wartoscZadana));
-
         QMessageBox::information(this, "Sukces", "Parametry zostały pomyślnie zaktualizowane.");
+        }
     } catch (const std::exception& ex) {
         QMessageBox::critical(this, "Błąd aktualizacji", ex.what());
     }
@@ -327,13 +328,9 @@ void MainWindow::updateSimulation() {
         double measured = m_prevOutput;
         double error = setpoint - measured;
 
-        double kp = m_symulacja->getPID()->getKp();
-        double ti = m_symulacja->getPID()->getTi();
-        double td = m_symulacja->getPID()->getTd();
-        double pComponent = kp * error;
-        double iComponent = (ti == 0.0) ? 0.0 : (kp / ti * error * m_time);
-        double dComponent = td * kp * (error - (m_prevSetpoint - measured));
-        double controlSignal = pComponent + iComponent + dComponent;
+        double pComponent = m_symulacja->getPID()->obliczP(setpoint, measured);
+        double iComponent = m_symulacja->getPID()->obliczI();
+        double dComponent = m_symulacja->getPID()->obliczD(setpoint, measured);
 
         m_symulacja->setZadane(setpoint);
         double output = m_symulacja->krok();
