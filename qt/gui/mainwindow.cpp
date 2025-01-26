@@ -331,6 +331,11 @@ bool MainWindow::isAllSet()
         error+= "delay;";
         isset = false;
     }
+    if(ui->zakloceniaLabel->text() == "")
+    {
+        error+= "zaklocenia;";
+        isset = false;
+    }
     msg.setText("Nie ustawiłeś współczynników: " + error + " symulacja wstrzymana.");
     msg.exec();
     return isset;
