@@ -187,7 +187,7 @@ void MainWindow::resetSimulation() {
     zadanaPlot->clearGraphs();
     uchybPlot->clearGraphs();
     wasreseted = true;
-    initSimulation();
+   // initSimulation();
 }
 
 void MainWindow::updateAllParams() {
