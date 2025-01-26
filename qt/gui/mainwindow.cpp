@@ -43,7 +43,6 @@ auto MainWindow::updateARXParams()
     auto arx = std::make_unique<ARX>(vec_a, vec_b, delay, zaklocenia);
     return arx;
 }
-
 auto MainWindow::updatePIDParams()
 {
     double kp = ui->kpLabel->text().toDouble();
@@ -165,26 +164,6 @@ initSimulation();
             throw std::logic_error("Symulacja nie została poprawnie zainicjalizowana.");
         }
 
-        auto arx = m_symulacja->getARX();
-        auto pid = m_symulacja->getPID();
-        if (arx) {
-            auto [vec_a, vec_b] = arx->getVektory();
-            for (int i=0; i<=vec_a.size();i++)
-            {
-            ui->vecaLabel->setText(QString::fromStdString(std::to_string(vec_a[i])));
-            }
-            for (int i=0; i<=vec_b.size();i++)
-            {
-            ui->vecbLabel->setText(QString::fromStdString(std::to_string(vec_b[i])));
-            }
-            ui->delayLabel->setText(QString::number(arx->getDelay()));
-            ui->zakloceniaLabel->setText(QString::number(arx->getZaklocenia()));
-        }
-        if (pid) {
-            ui->kpLabel->setText(QString::number(pid->getKp()));
-            ui->tiLabel->setText(QString::number(pid->getTi()));
-            ui->tdLabel->setText(QString::number(pid->getTd()));
-        }
         zoom(false);
         m_timer->start(100);
     } catch (const std::exception& ex) {
