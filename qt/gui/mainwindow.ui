@@ -75,7 +75,7 @@
     <item row="3" column="15">
      <widget class="QLabel" name="label_15">
       <property name="text">
-       <string>interwał</string>
+       <string>interwał [ms]</string>
       </property>
      </widget>
     </item>

@@ -194,8 +194,7 @@ void MainWindow::initSimulation() {
 }
 void MainWindow::setupPlots()
 {
-
-    // Dodanie danych do każdego wykresu
+    sterowaniePlot->addGraph();
     sterowaniePlot->addGraph();
     sterowaniePlot->addGraph();
     sterowaniePlot->addGraph();
@@ -204,13 +203,13 @@ void MainWindow::setupPlots()
     zadanaPlot->addGraph();
     if(!wasreseted)
     {
-        sterowaniePlot->xAxis->setLabel("t [s]");
+        sterowaniePlot->xAxis->setLabel("t");
         sterowaniePlot->yAxis->setLabel("y");
 
-        uchybPlot->xAxis->setLabel("t [s]");
+        uchybPlot->xAxis->setLabel("t");
         uchybPlot->yAxis->setLabel("y");
 
-        zadanaPlot->xAxis->setLabel("t [s]");
+        zadanaPlot->xAxis->setLabel("t");
         zadanaPlot->yAxis->setLabel("y");
 
     zadanaPlot->plotLayout()->insertRow(0);
@@ -223,6 +222,7 @@ void MainWindow::setupPlots()
     sterowaniePlot->graph(0)->setPen(QPen(Qt::red));
     sterowaniePlot->graph(1)->setPen(QPen(Qt::blue));
     sterowaniePlot->graph(2)->setPen(QPen(Qt::green));
+    sterowaniePlot->graph(3)->setPen(QPen(QColorConstants::DarkMagenta));
 
 
     uchybPlot->graph(0)->setPen(QPen(Qt::green));
@@ -241,6 +241,7 @@ void MainWindow::setupPlots()
     sterowaniePlot->graph(0)->setName("Składowa P");
     sterowaniePlot->graph(1)->setName("Składowa I");
     sterowaniePlot->graph(2)->setName("Składowa D");
+    sterowaniePlot->graph(3)->setName("Składowa PID");
     zadanaPlot->xAxis->setRange(m_x-1, m_x);
     zadanaPlot->yAxis->setRange(m_yZ-6, m_yZ);
     sterowaniePlot->xAxis->setRange(m_x-1, m_x);
@@ -289,7 +290,6 @@ void MainWindow::resetSimulation() {
     zadanaPlot->clearGraphs();
     uchybPlot->clearGraphs();
     wasreseted = true;
-    m_x = 1;
     sterowaniePlot->replot();
     zadanaPlot->replot();
     uchybPlot->replot();
@@ -313,6 +313,7 @@ void MainWindow::updateAllParams() {
         if (!(arx==nullptr||pid==nullptr||wartoscZadana==nullptr))
         {
         m_symulacja = std::make_unique<Symulacja>(std::move(arx), std::move(pid), std::move(wartoscZadana));
+            m_timer->start(ui->interwalSpinBox->value());
         QMessageBox::information(this, "Sukces", "Parametry zostały pomyślnie zaktualizowane.");
         }
     } catch (const std::exception& ex) {
@@ -347,6 +348,7 @@ void MainWindow::updateSimulation() {
             sterowaniePlot->graph(0)->addData(m_time-1,pComponent);
             sterowaniePlot->graph(1)->addData(m_time-1,iComponent);
             sterowaniePlot->graph(2)->addData(m_time-1,dComponent);
+            sterowaniePlot->graph(3)->addData(m_time-1,m_symulacja->getPID()->oblicz(setpoint,measured));
             uchybPlot->graph(0)->addData(m_time-1, error);
             if(m_x > 100)
             {
@@ -360,7 +362,6 @@ void MainWindow::updateSimulation() {
                 sterowaniePlot->xAxis->setRange(0, m_x/10);
                 uchybPlot->xAxis->setRange(0, m_x/10);
             }
-            //Wstępnie zostawiam rescale Axes, musimy przemyśleć czy wolimy moje skalowanie czy przy użyciu tego
             sterowaniePlot->yAxis->rescale();
             zadanaPlot->yAxis->rescale();
             uchybPlot->yAxis->rescale();
