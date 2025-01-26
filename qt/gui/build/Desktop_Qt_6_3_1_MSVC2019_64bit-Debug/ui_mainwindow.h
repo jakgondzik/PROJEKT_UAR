@@ -152,6 +152,7 @@ public:
         interwalSpinBox->setMinimum(10);
         interwalSpinBox->setMaximum(1000);
         interwalSpinBox->setSingleStep(100);
+        interwalSpinBox->setValue(100);
 
         gridLayout->addWidget(interwalSpinBox, 3, 16, 1, 1);
 
