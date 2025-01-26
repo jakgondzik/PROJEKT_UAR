@@ -156,6 +156,7 @@ void MainWindow::setupPlots()
 void MainWindow::startSimulation() {
     if(m_time > 0)
     {
+        m_timer->start(100);
         return;
     }
 initSimulation();
