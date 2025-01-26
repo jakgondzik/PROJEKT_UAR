@@ -46,7 +46,6 @@ private:
     bool resetclicked;
     double m_prevSetpoint;
     double m_prevOutput;
-    bool isAllSet();
     void initSimulation();
     std::unique_ptr<WartoscZadana> updateSignalParams();
     std::unique_ptr<ARX> updateARXParams();
