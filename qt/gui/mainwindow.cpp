@@ -100,39 +100,41 @@ void MainWindow::initSimulation() {
     m_time = 0;
     m_prevSetpoint = 0.0;
     m_prevOutput = 0.0;
-    setupPlots();
+    if(resetclicked)
+    {
+        setupPlots();
+        resetclicked = false;
+    }
 
 }
 void MainWindow::setupPlots()
 {
-    sterowaniePlot->xAxis->setLabel("t [s]");
-    sterowaniePlot->yAxis->setLabel("y");
-    //sterowaniePlot->xAxis->setRange(m_x-1, m_x);
-  //  sterowaniePlot->yAxis->setRange(m_yPID-2, m_yPID);
 
-    // Uchyb
-    uchybPlot->xAxis->setLabel("t [s]");
-    uchybPlot->yAxis->setLabel("y");
-  //  uchybPlot->xAxis->setRange(m_x-1, m_x);
-   // uchybPlot->yAxis->setRange(m_yU-2, m_yU);
-
-    // Zadana
-    zadanaPlot->xAxis->setLabel("t [s]");
-    zadanaPlot->yAxis->setLabel("y");
-    zadanaPlot->xAxis->setRange(m_x-1, m_x);
-    zadanaPlot->yAxis->setRange(m_yZ-6, m_yZ);
     // Dodanie danych do każdego wykresu
     sterowaniePlot->addGraph();
     sterowaniePlot->addGraph();
     sterowaniePlot->addGraph();
-    sterowaniePlot->graph(0)->setPen(QPen(Qt::red));
-    sterowaniePlot->graph(1)->setPen(QPen(Qt::blue));
-    sterowaniePlot->graph(2)->setPen(QPen(Qt::green));
-
     uchybPlot->addGraph();
-    uchybPlot->graph(0)->setPen(QPen(Qt::green));
+    zadanaPlot->addGraph();
+    zadanaPlot->addGraph();
     if(!wasreseted)
     {
+        sterowaniePlot->xAxis->setLabel("t [s]");
+        sterowaniePlot->yAxis->setLabel("y");
+        //sterowaniePlot->xAxis->setRange(m_x-1, m_x);
+        //  sterowaniePlot->yAxis->setRange(m_yPID-2, m_yPID);
+
+        // Uchyb
+        uchybPlot->xAxis->setLabel("t [s]");
+        uchybPlot->yAxis->setLabel("y");
+        //  uchybPlot->xAxis->setRange(m_x-1, m_x);
+        // uchybPlot->yAxis->setRange(m_yU-2, m_yU);
+
+        // Zadana
+        zadanaPlot->xAxis->setLabel("t [s]");
+        zadanaPlot->yAxis->setLabel("y");
+        zadanaPlot->xAxis->setRange(m_x-1, m_x);
+        zadanaPlot->yAxis->setRange(m_yZ-6, m_yZ);
     zadanaPlot->plotLayout()->insertRow(0);
     zadanaPlot->plotLayout()->addElement(0, 0, new QCPTextElement(zadanaPlot, "Wartość zadana", QFont("Arial", 12, QFont::Bold)));
     sterowaniePlot->plotLayout()->insertRow(0);
@@ -140,8 +142,13 @@ void MainWindow::setupPlots()
     uchybPlot->plotLayout()->insertRow(0);
     uchybPlot->plotLayout()->addElement(0, 0, new QCPTextElement(uchybPlot, "Uchyb", QFont("Arial", 12, QFont::Bold)));
     }
-    zadanaPlot->addGraph();
-    zadanaPlot->addGraph();
+    sterowaniePlot->graph(0)->setPen(QPen(Qt::red));
+    sterowaniePlot->graph(1)->setPen(QPen(Qt::blue));
+    sterowaniePlot->graph(2)->setPen(QPen(Qt::green));
+
+
+    uchybPlot->graph(0)->setPen(QPen(Qt::green));
+
     zadanaPlot->graph(0)->setPen(QPen(Qt::red));
     zadanaPlot->graph(1)->setPen(QPen(Qt::blue));
 
@@ -191,14 +198,16 @@ void MainWindow::stopSimulation() {
 }
 
 void MainWindow::resetSimulation() {
-
+    resetclicked = true;
     ui->zadaneLabel->setText("0.00");
     ui->wyjscieLabel->setText("0.00");
     sterowaniePlot->clearGraphs();
     zadanaPlot->clearGraphs();
     uchybPlot->clearGraphs();
     wasreseted = true;
-
+    sterowaniePlot->replot();
+    zadanaPlot->replot();
+    uchybPlot->replot();
     initSimulation();
 }
 

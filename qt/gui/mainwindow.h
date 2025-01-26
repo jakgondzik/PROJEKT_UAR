@@ -43,6 +43,7 @@ private:
     void zoom(bool);
     void setupPlots();
     int m_time;
+    bool resetclicked;
     double m_prevSetpoint;
     double m_prevOutput;
     bool isAllSet();
