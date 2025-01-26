@@ -30,11 +30,14 @@ private:
     std::unique_ptr<Symulacja> m_symulacja;
 
     QTimer *m_timer;
-
+    QElapsedTimer  elapsedTimer;
     QCustomPlot * sterowaniePlot;
     QCustomPlot * uchybPlot;
     QCustomPlot * zadanaPlot;
     QMessageBox msg;
+
+    double interval = 100;;
+
     double m_x = 1;
     double m_yZ = 3;
     double m_yPID = 1;

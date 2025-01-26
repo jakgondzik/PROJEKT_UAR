@@ -186,6 +186,7 @@ void MainWindow::initSimulation() {
     m_prevOutput = 0.0;
     if(resetclicked)
     {
+
         setupPlots();
         resetclicked = false;
     }
@@ -205,20 +206,13 @@ void MainWindow::setupPlots()
     {
         sterowaniePlot->xAxis->setLabel("t [s]");
         sterowaniePlot->yAxis->setLabel("y");
-        //sterowaniePlot->xAxis->setRange(m_x-1, m_x);
-        //  sterowaniePlot->yAxis->setRange(m_yPID-2, m_yPID);
 
-        // Uchyb
         uchybPlot->xAxis->setLabel("t [s]");
         uchybPlot->yAxis->setLabel("y");
-        //  uchybPlot->xAxis->setRange(m_x-1, m_x);
-        // uchybPlot->yAxis->setRange(m_yU-2, m_yU);
 
-        // Zadana
         zadanaPlot->xAxis->setLabel("t [s]");
         zadanaPlot->yAxis->setLabel("y");
-        zadanaPlot->xAxis->setRange(m_x-1, m_x);
-        zadanaPlot->yAxis->setRange(m_yZ-6, m_yZ);
+
     zadanaPlot->plotLayout()->insertRow(0);
     zadanaPlot->plotLayout()->addElement(0, 0, new QCPTextElement(zadanaPlot, "Wartość zadana", QFont("Arial", 12, QFont::Bold)));
     sterowaniePlot->plotLayout()->insertRow(0);
@@ -247,7 +241,12 @@ void MainWindow::setupPlots()
     sterowaniePlot->graph(0)->setName("Składowa P");
     sterowaniePlot->graph(1)->setName("Składowa I");
     sterowaniePlot->graph(2)->setName("Składowa D");
-
+    zadanaPlot->xAxis->setRange(m_x-1, m_x);
+    zadanaPlot->yAxis->setRange(m_yZ-6, m_yZ);
+    sterowaniePlot->xAxis->setRange(m_x-1, m_x);
+    sterowaniePlot->yAxis->setRange(m_yZ-6, m_yZ);
+    uchybPlot->xAxis->setRange(m_x-1, m_x);
+    uchybPlot->yAxis->setRange(m_yZ-6, m_yZ);
     zoom(true);
 
     sterowaniePlot->replot();
@@ -279,6 +278,7 @@ void MainWindow::stopSimulation() {
     m_timer->stop();
     zoom(true);
 
+
 }
 
 void MainWindow::resetSimulation() {
@@ -289,6 +289,7 @@ void MainWindow::resetSimulation() {
     zadanaPlot->clearGraphs();
     uchybPlot->clearGraphs();
     wasreseted = true;
+    m_x = 1;
     sterowaniePlot->replot();
     zadanaPlot->replot();
     uchybPlot->replot();
@@ -340,15 +341,25 @@ void MainWindow::updateSimulation() {
 
 
         if (m_time > 0) {
+            m_x = m_time;
             zadanaPlot->graph(0)->addData(m_time-1,setpoint);
             zadanaPlot->graph(1)->addData(m_time-1,measured);
             sterowaniePlot->graph(0)->addData(m_time-1,pComponent);
             sterowaniePlot->graph(1)->addData(m_time-1,iComponent);
             sterowaniePlot->graph(2)->addData(m_time-1,dComponent);
             uchybPlot->graph(0)->addData(m_time-1, error);
-            zadanaPlot->xAxis->setRange(0, m_x);
-            sterowaniePlot->xAxis->setRange(0, m_x);
-            uchybPlot->xAxis->setRange(0, m_x);
+            if(m_x > 100)
+            {
+                zadanaPlot->xAxis->setRange((m_x-100)/10, m_x/10);
+                sterowaniePlot->xAxis->setRange((m_x-100)/10, m_x/10);
+                uchybPlot->xAxis->setRange((m_x-100)/10, m_x/10);
+            }
+            else
+            {
+                zadanaPlot->xAxis->setRange(0, m_x/10);
+                sterowaniePlot->xAxis->setRange(0, m_x/10);
+                uchybPlot->xAxis->setRange(0, m_x/10);
+            }
             //Wstępnie zostawiam rescale Axes, musimy przemyśleć czy wolimy moje skalowanie czy przy użyciu tego
             sterowaniePlot->yAxis->rescale();
             zadanaPlot->yAxis->rescale();
@@ -356,8 +367,6 @@ void MainWindow::updateSimulation() {
             zadanaPlot->replot();
             sterowaniePlot->replot();
             uchybPlot->replot();
-            m_x+=1;
-
         }
         m_time++;
         m_prevOutput = output;
