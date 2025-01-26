@@ -62,14 +62,29 @@ void ARX::reset() {
 // ---------------------- PID ----------------------
 PID::PID(double p, double i, double d) : m_kp(p), m_ti(i), m_td(d), m_suma(0.0), m_pop_blad(0.0) {}
 
-double PID::oblicz(double cel, double zmierzone) {
+double PID::obliczP(double cel, double zmierzone)
+{
     double blad = cel - zmierzone;
-    double P = m_kp * blad;
     m_suma += blad;
-    double I = (m_ti == 0.0) ? 0.0 : (m_suma / m_ti);
+    return m_kp * blad;
+}
+
+double PID::obliczI()
+{
+    return (m_ti == 0.0) ? 0.0 : (m_suma / m_ti);
+}
+
+double PID::obliczD(double cel, double zmierzone)
+{
+    double blad = cel - zmierzone;
     double D = m_td * (blad - m_pop_blad);
     m_pop_blad = blad;
-    return P + I + D;
+    return D;
+}
+
+double PID::oblicz() 
+{    
+    return obliczP() + obliczI() + obliczD();
 }
 
 void PID::reset() {

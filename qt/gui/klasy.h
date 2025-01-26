@@ -37,7 +37,10 @@ protected:
 
 public:
     PID(double p, double i, double d);
-    double oblicz(double cel, double zmierzone);
+    double obliczP(double cel, double zmierzone);
+    double obliczI();
+    double obliczD(double cel, double zmierzone);
+    double oblicz();
     void reset();
     void setParametry(double kp, double ti, double td);
     double getKp() const { return m_kp; }
