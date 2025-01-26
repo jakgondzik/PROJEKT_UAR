@@ -23,6 +23,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(m_timer, &QTimer::timeout, this, &MainWindow::updateSimulation);
 
+    this->ui->kpLabel->setText("0.5");
+    this->ui->tiLabel->setText("10");
+    this->ui->tdLabel->setText("0.1");
+    this->ui->vecaLabel->setText("-0.4");
+    this->ui->vecbLabel->setText("0.6");
+    this->ui->zakloceniaLabel->setText("0.01");
+    this->ui->delayLabel->setText("1");
+    this->ui->amplitudaLabel->setText("1");
+    this->ui->okresLabel->setText("40");
+    this->ui->cyklLabel->setText("0.5");
+    this->ui->aktywacjaLabel->setText("1");
 
 }
 
@@ -187,7 +198,8 @@ void MainWindow::resetSimulation() {
     zadanaPlot->clearGraphs();
     uchybPlot->clearGraphs();
     wasreseted = true;
-   // initSimulation();
+
+    initSimulation();
 }
 
 void MainWindow::updateAllParams() {
