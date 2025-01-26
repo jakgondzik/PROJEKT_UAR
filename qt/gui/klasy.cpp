@@ -82,9 +82,9 @@ double PID::obliczD(double cel, double zmierzone)
     return D;
 }
 
-double PID::oblicz() 
+double PID::oblicz(double cel, double zmierzone)
 {    
-    return obliczP() + obliczI() + obliczD();
+    return obliczP(cel, zmierzone) + obliczI() + obliczD(cel, zmierzone);
 }
 
 void PID::reset() {

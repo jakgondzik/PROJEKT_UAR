@@ -40,7 +40,7 @@ public:
     double obliczP(double cel, double zmierzone);
     double obliczI();
     double obliczD(double cel, double zmierzone);
-    double oblicz();
+    double oblicz(double cel, double zmierzone);
     void reset();
     void setParametry(double kp, double ti, double td);
     double getKp() const { return m_kp; }

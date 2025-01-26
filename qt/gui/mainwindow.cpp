@@ -258,7 +258,7 @@ void MainWindow::setupPlots()
 void MainWindow::startSimulation() {
     if(m_time > 0)
     {
-        m_timer->start(1000);
+        m_timer->start(this->ui->interwalSpinBox->value());
         return;
     }
 initSimulation();
@@ -268,7 +268,7 @@ initSimulation();
         }
 
         zoom(false);
-        m_timer->start(100);
+        m_timer->start(this->ui->interwalSpinBox->value());
     } catch (const std::exception& ex) {
         QMessageBox::critical(this, "Błąd", ex.what());
     }
