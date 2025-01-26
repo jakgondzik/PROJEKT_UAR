@@ -189,7 +189,7 @@ void MainWindow::initSimulation() {
         setupPlots();
         resetclicked = false;
     }
-
+    }
 }
 void MainWindow::setupPlots()
 {
@@ -258,7 +258,7 @@ void MainWindow::setupPlots()
 void MainWindow::startSimulation() {
     if(m_time > 0)
     {
-        m_timer->start(100);
+        m_timer->start(1000);
         return;
     }
 initSimulation();
@@ -342,36 +342,23 @@ void MainWindow::updateSimulation() {
 
 
         if (m_time > 0) {
-       /*     if(setpoint > m_yZ || measured > m_yZ)
-            {
-//Brakuje skalowania w dół
-                m_yZ+=1;
-            }
-            if(pComponent > m_yPID || iComponent > m_yPID || dComponent > m_yPID)
-            {
-                m_yPID+=1;
-            }
-            if(setpoint > m_yZ)
-            {
-                m_yZ+=1;
-            }*/
             zadanaPlot->graph(0)->addData(m_time-1,setpoint);
             zadanaPlot->graph(1)->addData(m_time-1,measured);
             sterowaniePlot->graph(0)->addData(m_time-1,pComponent);
             sterowaniePlot->graph(1)->addData(m_time-1,iComponent);
             sterowaniePlot->graph(2)->addData(m_time-1,dComponent);
             uchybPlot->graph(0)->addData(m_time-1, error);
-           /* zadanaPlot->xAxis->setRange(m_x-1, m_x);
-            sterowaniePlot->xAxis->setRange(m_x-1, m_x);
-            uchybPlot->xAxis->setRange(m_x-1, m_x);*/
+            zadanaPlot->xAxis->setRange(0, m_x);
+            sterowaniePlot->xAxis->setRange(0, m_x);
+            uchybPlot->xAxis->setRange(0, m_x);
             //Wstępnie zostawiam rescale Axes, musimy przemyśleć czy wolimy moje skalowanie czy przy użyciu tego
-            sterowaniePlot->rescaleAxes();
-            zadanaPlot->rescaleAxes();
-            uchybPlot->rescaleAxes();
+            sterowaniePlot->yAxis->rescale();
+            zadanaPlot->yAxis->rescale();
+            uchybPlot->yAxis->rescale();
             zadanaPlot->replot();
             sterowaniePlot->replot();
             uchybPlot->replot();
-            m_x+=0.2;
+            m_x+=1;
 
         }
         m_time++;
@@ -382,49 +369,7 @@ void MainWindow::updateSimulation() {
         stopSimulation();
     }
 }
-bool MainWindow::isAllSet()
-{
-    QString error = "";\
-    bool isset = true;
-    if(ui->kpLabel->text() == "")
-    {
-        error+= "kp;";
-        isset = false;
-    }
-    if(ui->tdLabel->text() == "")
-    {
-        error+= "td;";
-        isset = false;
-    }
-    if(ui->tiLabel->text() == "")
-    {
-        error+= "ti;";
-        isset = false;
-    }
-    if(ui->vecaLabel->text() == "")
-    {
-        error+= "Współczynnik A;";
-        isset = false;
-    }
-    if(ui->vecbLabel->text() == "")
-    {
-        error+= "Współczynnik B;";
-        isset = false;
-    }
-    if(ui->delayLabel->text() == "")
-    {
-        error+= "delay;";
-        isset = false;
-    }
-    if(ui->zakloceniaLabel->text() == "")
-    {
-        error+= "zaklocenia;";
-        isset = false;
-    }
-    msg.setText("Nie ustawiłeś współczynników: " + error + " symulacja wstrzymana.");
-    msg.exec();
-    return isset;
-}
+
 void MainWindow::zoom(bool stan)
 {
     sterowaniePlot->setInteraction(QCP::iRangeZoom, stan);
